@@ -228,7 +228,7 @@ body.dark .sidebar li a:hover .text{
 }
 
 .menu-bar .mode .sun-moon{
-    height: 50px;
+    height: 22px;
     width: 60px;
 }
 
@@ -309,9 +309,41 @@ body.dark .home .text{
 }
 
 
-
-
-
+.rech{
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.home-icon{
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.exit{
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.sun{
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.moon{
+    display: flex;
+    min-width: 60px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
 
 
 
