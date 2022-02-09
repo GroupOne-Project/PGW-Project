@@ -283,6 +283,7 @@ body.dark .switch::before{
 }
 
 .home{
+    display: flex;
     position: absolute;
     top: 0;
     top: 0;
@@ -309,10 +310,70 @@ body.dark .home .text{
 }
 
 
+/* -------------content----------------- */
 
+.content {
+    margin: 0;
+    height: calc(100vh - 20vh);
+    width: calc(100vw - 20px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center ;
 
+}
 
-
+a.bouton1 {                                                                                                                                                                                                                                 
+    padding: 75px 25px;
+    /* margin: 15px; */
+    margin: 25px;
+    background: #ffffff;
+    color: #000000;
+    -webkit-transition: all 1s ease-out 0s;
+    -moz-transition: all 1s ease-out 0s;
+    transition: all 1s ease-out 0s;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 5%;
+    position: relative;
+    /* top: 250px;
+    left: 25%; */
+    
+    }
+a{
+    text-decoration: none;
+}
+    a.bouton1:hover {
+    background: #afafaf;
+    color: #ffffff;
+    }
+    a.bouton2 {
+        padding: 75px 25px;
+        margin: 25px;
+        background: #ffffff;
+        color: #000000;
+        -webkit-transition: all 1s ease-out 0s;
+        -moz-transition: all 1s ease-out 0s;
+        transition: all 1s ease-out 0s;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 5%;
+        position: relative;
+        /* top: 250px;
+        left: 30%; */
+       
+        }
+    
+        a.bouton2:hover {
+        background: #afafaf;
+        color: #ffffff
+        }
+/* ----------------blank------------------- */
+.blank {
+    width: 30%;
+    height: 100%;
+    border: 2px solid blue;
+}
 
 
 
