@@ -34,6 +34,8 @@ function Register() {
           type="text"
           className="register__textBox"
           value={name}
+
+          // setName on dashboard
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />

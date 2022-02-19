@@ -5,10 +5,12 @@ import "./Dashboard.css";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
+
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
 
   // Fetch userName when userID
   const fetchUserName = async () => {
@@ -17,12 +19,16 @@ function Dashboard() {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
 
+       // Fetch userProject when userID
+      const project = data.project;
+      console.log(project);
+
       setName(data.name);
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
     }
-  };
+  };   
 
   useEffect(() => {
     if (loading) return;
@@ -59,7 +65,7 @@ function Dashboard() {
       <div>Your old project here</div>
 
       {/* read user project */}
-      
+      {/* <div>{project}</div> */}
 
 
     </>

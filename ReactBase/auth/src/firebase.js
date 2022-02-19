@@ -33,6 +33,19 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
+// user project
+const project = {
+  'name': '',
+  'task': {
+    'id': 0,
+    'label': '',
+    'date_start': '',
+    'date_end': '',
+    'precedent': 0,
+  },
+};
+
 const googleProvider = new GoogleAuthProvider();
 
 const signInWithGoogle = async () => {
@@ -66,20 +79,9 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 const registerWithEmailAndPassword = async (name, email, password) => {
 
-  try {
-    // user project
-    const project = {
-      'name': '',
-      'task': {
-        'id': 0,
-        'label': '',
-        'date_start': '',
-        'date_end': '',
-        'precedent': 0,
-      },
-    };
+  try {    
 
-    console.log(project);
+    // console.log(project);
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
