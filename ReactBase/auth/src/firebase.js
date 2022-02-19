@@ -60,13 +60,26 @@ const logInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
-    consol.log(err.message);
+    console.log(err.message);
   }
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
 
   try {
+    // user project
+    const project = {
+      'name': '',
+      'task': {
+        'id': 0,
+        'label': '',
+        'date_start': '',
+        'date_end': '',
+        'precedent': 0,
+      },
+    };
+
+    console.log(project);
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
@@ -74,12 +87,16 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      project,
     });
 
+
+    // set on Firestore the user information
     set(ref(db, 'users/' + user.uid), {
       username: name,
       name: name,
-      email: email
+      email: email,
+      project: project
     });
 
   } catch (err) {

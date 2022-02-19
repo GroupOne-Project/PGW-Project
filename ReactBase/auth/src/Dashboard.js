@@ -11,24 +11,24 @@ function Dashboard() {
   const navigate = useNavigate();
 
   // Fetch userName when userID
-  // const fetchUserName = async () => {
-  //   try {
-  //     const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-  //     const doc = await getDocs(q);
-  //     const data = doc.docs[0].data();
+  const fetchUserName = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
 
-  //     setName(data.name);
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("An error occured while fetching user data");
-  //   }
-  // };
+      setName(data.name);
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  };
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
 
-    // fetchUserName();
+    fetchUserName();
   }, [user, loading]);
 
   return (
@@ -39,7 +39,7 @@ function Dashboard() {
           <div>Welcome</div>
           Logged in as
           <div>{name}</div>
-          <div>{user?.email.split("@")[0]}</div>
+          {/* <div>{user?.email.split("@")[0]}</div> */}
           <div>With email:</div>
           <div>{user?.email}</div>
           <button className="dashboard__btn" onClick={logout}>
@@ -58,6 +58,8 @@ function Dashboard() {
       {/* User recents Project */}
       <div>Your old project here</div>
 
+      {/* read user project */}
+      
 
 
     </>
