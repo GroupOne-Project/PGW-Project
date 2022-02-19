@@ -17,6 +17,8 @@ import {
   addDoc,
 } from "firebase/firestore";
 
+import { getDatabase, ref, set } from "firebase/database"
+
 const firebaseConfig = {
   apiKey: "AIzaSyBDkp08kxPn4IZ74PeyH5S3iUZo6R7dEWY",
   authDomain: "reactbase-f9ce5.firebaseapp.com",
@@ -63,6 +65,7 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
+
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -72,6 +75,12 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       authProvider: "local",
       email,
     });
+
+    set(ref(db, 'users/' + user.uid), {
+      username: name,
+      email: email
+    });
+
   } catch (err) {
     console.error(err);
     alert(err.message);
