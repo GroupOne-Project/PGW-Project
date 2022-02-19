@@ -7,7 +7,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 
 import Dashboard from "./Dashboard";
 
-const Create = () => {
+const Create_project = () => {
 
     // Dashborad call
     const [user, loading, error] = useAuthState(auth);
@@ -41,10 +41,13 @@ const Create = () => {
 
             {/* Main */}
             <div className="create-project">Welcome to create Project</div>
+
+            {/* Get all data about self project and save this last one into Firebase / Firestore */}
+            
             
         </>
     );
     
 };
 
-export default Create;
+export default Create_project;

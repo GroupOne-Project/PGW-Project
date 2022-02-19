@@ -51,9 +51,13 @@ function Dashboard() {
       {/* Main */}
       <div className="main">
         <button>
-          <Link to="/create">Create Project</Link>
+          <Link to="/create_project">Create Project</Link>
         </button>
       </div>
+
+      {/* User recents Project */}
+      <div>Your old project here</div>
+
     </>
   );
 }
