@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+/* font-family: 'Ubuntu Mono', monospace; */
+
+* {
+    font-family: 'Ubuntu Mono', monospace;
+    margin: 10px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+#check {
+    background-color: green;
+}
+
+#del {
+    background-color: red;
+}
+
+.screen {
+    max-width: 500px;
+    min-height: 300px;
+    border: 1px solid blue;
+}

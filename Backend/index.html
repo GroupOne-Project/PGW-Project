@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Firebase | Test</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+	<p>Firebase - FastCRUD</p>
+
+	<input type="text" name="" id="text">
+	<input type="submit" name="" id="check">
+	<input type="submit" name="Del" value="del" id="del">
+
+	<div class="screen">
+		<p>List:</p>
+		<ul>
+			<li id="result"></li>
+		</ul>
+	</div>
+
+	<!-- <script src="script.js"></script> -->
+
+</body>
+</html>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-analytics.js";
+
+  import { getDatabase, set, ref, push, child, get, onValue } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwN2TdYigjq8x_9tf5OqHaBRLgTdOETG0",
+    authDomain: "fastcrud-db21c.firebaseapp.com",
+    projectId: "fastcrud-db21c",
+    storageBucket: "fastcrud-db21c.appspot.com",
+    messagingSenderId: "126110491978",
+    appId: "1:126110491978:web:351ee2a9810d505da04db3",
+    measurementId: "G-TTBTXGEFKY"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  // Get a reference to the database service
+  const database = getDatabase(app);
+
+
+  // read
+  const userId = push(child(ref(database), 'users')).key;
+  const dbRef = ref(getDatabase());
+  get(dbRef, `users/${userId}`).then((snapshot) => {
+  	if (snapshot.exists()) {
+  		const dataLocal = snapshot.val();
+  		console.log(dataLocal);
+  	} else {
+	    console.log("No data available");
+	}
+	}).catch((error) => {
+  		console.error(error);
+	});
+
+
+  const check = document.querySelector('#check');
+  const screen = document.querySelector('.screen');
+  const del = document.querySelector('#del');
+
+  // create
+  check.addEventListener('click', (e) => {
+  	// const esCocher = e.target.checked;
+  	
+  	const text = document.querySelector('#text').value;
+  	console.log(text);
+  	set(ref(database, 'users/' + userId), {
+    	text: text,
+  	});
+  	alert("save");
+  	const newE = document.querySelector("#result").append(text);  	
+  })
+
+
+  // delete
+  del.addEventListener('click', (e) => {
+  	// const esCocher = e.target.checked;
+  	
+  	
+
+  	alert("delete"); 	
+  })
+
+
+  // update
+
+</script>

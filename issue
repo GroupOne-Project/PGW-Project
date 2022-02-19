@@ -1,0 +1,25 @@
+Athor: @yayahc.
+--------------
+
+Taches >
+
+        1 - Creation de la page 'Creer un project' a la quel l'utilisateur a acces grace au boutton
+                'create new project' sur la page d'acceuille
+        2 - Creation de la page 'Ouvrir un project' a la quel l'utilisateur a acces grace au boutton
+                'open project' sur la page d'acceuille
+        3 - Garder le menu apparent a l'ouverture de l'app
+        
+        4 - Utiliser le changement de theme native a electron
+        5 - Permetre a l'utiliateur de sortir grace au boutton Exit
+        6 - Voir la documentation de python-bridge
+        7 - Voir le cours sur electron ( gestion de storage )
+	8 - Ajouter le logo de l'app
+
+Status (Taches) >
+        1 - Ok
+        2 - Ok
+        3 - Ok
+        4 - 
+        5 - 
+        6 - 
+        7 - 
