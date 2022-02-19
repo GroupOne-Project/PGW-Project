@@ -60,7 +60,7 @@ const logInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    consol.log(err.message);
   }
 };
 
@@ -78,12 +78,13 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
     set(ref(db, 'users/' + user.uid), {
       username: name,
+      name: name,
       email: email
     });
 
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    console.log(err.message);
   }
 };
 

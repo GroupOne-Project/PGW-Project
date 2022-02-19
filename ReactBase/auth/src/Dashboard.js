@@ -38,7 +38,7 @@ function Dashboard() {
         <div className="dashboard__container">
           <div>Welcome</div>
           Logged in as
-          {/* <div>{name}</div> */}
+          <div>{name}</div>
           <div>{user?.email.split("@")[0]}</div>
           <div>With email:</div>
           <div>{user?.email}</div>
