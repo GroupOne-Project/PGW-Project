@@ -12,16 +12,27 @@ function Dashboard() {
   const navigate = useNavigate();
 
 
+
+  // Fetch userProject when userID
+  // const project = data.project;
+  // console.log(project);
+  const fetchUserProject = async () => {
+
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      const projects = doc.data().projects;
+      console.log(projects);
+    });
+    
+  };
+
   // Fetch userName when userID
   const fetchUserName = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-
-       // Fetch userProject when userID
-      const project = data.project;
-      console.log(project);
 
       setName(data.name);
     } catch (err) {
@@ -34,6 +45,7 @@ function Dashboard() {
     if (loading) return;
     if (!user) return navigate("/");
 
+    fetchUserProject();
     fetchUserName();
   }, [user, loading]);
 
@@ -65,7 +77,7 @@ function Dashboard() {
       <div>Your old project here</div>
 
       {/* read user project */}
-      {/* <div>{project}</div> */}
+      {/* <div>{projects}</div> */}
 
 
     </>

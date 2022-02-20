@@ -34,17 +34,16 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// user project
-const project = {
-  'name': '',
-  'task': {
-    'id': 0,
-    'label': '',
-    'date_start': '',
-    'date_end': '',
-    'precedent': 0,
-  },
-};
+// user projects
+// 'name': '',
+// 'task': {
+//   'id': 0,
+//   'label': '',
+//   'date_start': '',
+//   'date_end': '',
+//   'precedent': 0,
+// },
+const projects = {};
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -89,7 +88,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
-      project,
+      projects,
     });
 
 
@@ -98,7 +97,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       username: name,
       name: name,
       email: email,
-      project: project
+      projects: projects
     });
 
   } catch (err) {
