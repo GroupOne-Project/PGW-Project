@@ -5,6 +5,7 @@ import Register from "./Register";
 import Reset from "./Reset";
 import Dashboard from "./Dashboard";
 import Create_project from "./Create_project";
+import Project from "./Project";
 
 // Import each components of DOM
 // Add route of each components of DOM
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/create_project" element={<Create_project />} />
+          <Route exact path="/project" element={<Project />} />
         </Routes>
       </Router>
     </div>

@@ -38,6 +38,7 @@ function Dashboard() {
             <button>
               <Link to="/project">
                 <div>{recentProject}</div>
+                <a href={ `#/project=${recentProject}` }>{recentProject}</a>
               </Link>
             </button>
           );
