@@ -12,7 +12,7 @@ function Dashboard() {
   const [name, setName] = useState("");
   const [projects, setProjects] = useState("");
   const [recentProjects, setRecentProjects] = useState("");
-  // const [recentProjectss, setRecentProjectss] = useState("");
+  const [recentProjectss, setRecentProjectss] = useState("");
   const navigate = useNavigate();
 
 
@@ -33,8 +33,16 @@ function Dashboard() {
         const e = `${key}: ${value["name"]}`;
         recentProjects.push(e);
         console.log(recentProjects);
-        const recentProjects = recentProjects.map((recentProject) => <li>{recentProject}</li>);
-        setRecentProjects(recentProjects);
+
+        const recentProjectss = recentProjects.map((recentProject) => 
+            <button>
+              <Link to="/project">
+                <div>{recentProject}</div>
+              </Link>
+            </button>
+          );
+
+        setRecentProjects(recentProjectss);
       }
       // setRecentProjects(recentProjects);
 
@@ -91,9 +99,7 @@ function Dashboard() {
       </div>
 
       {/* User recents Project */}
-      <button>
-        <Link to="/project">Project Recent : {recentProjects}</Link>        
-      </button>
+      <div>{recentProjects}</div>
 
     </>
 
