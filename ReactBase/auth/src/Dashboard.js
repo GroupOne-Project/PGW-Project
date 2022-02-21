@@ -34,12 +34,14 @@ function Dashboard() {
         recentProjects.push(e);
         console.log(recentProjects);
 
+
+        // retrun format of project recent
         const recentProjectss = recentProjects.map((recentProject) => 
             <button>
-              <Link to="/project">
-                <div>{recentProject}</div>
-                <a href={ `#/project=${recentProject}` }>{recentProject}</a>
-              </Link>
+
+                {/* <div>{recentProject}</div>  */}
+                <a href={ `/project=${recentProject[0]}` }>{recentProject}</a>
+                
             </button>
           );
 

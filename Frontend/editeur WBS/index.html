@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title">WBS</div>
+    <div class="tableau">
+      <table summary="Editable table with datasets ordered in columns" class="table-fill">  
+        <tbody>
+          
+          <tr>  
+            <th scope="col"> Nom de la tache </th>  
+            <th scope="col"> Duree </th>  
+            <th scope="col"> Date debut </th>  
+            <th scope="col"> Date fin </th> 
+            <th scope="col"> Predecesseur </th>  
+      
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>  
+            
+        
+        </tbody>  
+      </table> 
+    </div>
+  </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+<script>  
+var table = document.querySelector('table');  
+var dataCells = table.querySelectorAll('tr > td');  
+var rows = table.querySelectorAll('tr');  
+var code = document.querySelector('code');  
+var resetButton = document.querySelector('.reset');  
+rows = Array.prototype.slice.call(rows, 1);  
+var ncols = rows[0].children.length - 1;  
+var initialData = {0:[1,2,3,4,5],1:[6,7,8,9,10],2:[11,12,13,14,15]};  
+function parseTable () {  
+  var d = {};  
+  Array.prototype.forEach.call(rows, function (row, i) {  
+    var rowrowCells = row.querySelectorAll('td');  
+    return Array.prototype.map.call(rowCells, function (cell, j) {  
+      if (!d[j]) d[j] = [];  
+      d[j].push(parseInt(cell.textContent, 10));  
+    });  
+  });  
+  return d;  
+}  
+function setTableData (data) {  
+  Array.prototype.forEach.call(rows, function (row, i) {  
+    var rowrowCells = row.querySelectorAll('td');  
+    return Array.prototype.map.call(rowCells, function (cell, j) {  
+      cell.textContent = initialData[j][i];  
+    });  
+  });  
+}  
+Array.prototype.forEach.call(dataCells, function (cell) {  
+  cell.contentEditable = true;  
+});  
+table.addEventListener('keyup', function (e) {  
+  if (e.target.tagName === 'TD') {  
+    setTimeout(function () {  
+      code.innerText = JSON.stringify( parseTable() );  
+    }, 0);  
+  }  
+});  
+</script>  
+</body>
+</html>
