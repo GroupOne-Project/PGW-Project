@@ -9,8 +9,8 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [projects, setProjects] = useState("");
   const navigate = useNavigate();
-
 
 
   // Fetch userProject when userID
@@ -22,6 +22,7 @@ function Dashboard() {
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       const projects = doc.data().projects;
+      setProjects(projects)
       console.log(projects);
     });
     
