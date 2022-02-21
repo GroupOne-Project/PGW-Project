@@ -10,6 +10,7 @@ function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [projects, setProjects] = useState("");
+  const [recentProject, setRecentProjects] = useState("");
   const navigate = useNavigate();
 
 
@@ -21,9 +22,11 @@ function Dashboard() {
     const querySnapshot = await getDocs(collection(db, "users"));
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      const projects = doc.data().projects;
+      const projects = doc.data().projects;      
       setProjects(projects)
       console.log(projects);
+      const recentProject = projects["1"]["name"];
+      setRecentProjects(recentProject)
     });
     
   };
@@ -74,11 +77,8 @@ function Dashboard() {
         </button>
       </div>
 
-      {/* User recents Project */}
-      <div>Your old project here</div>
-
-      {/* read user project */}
-      {/* <div>{projects}</div> */}
+      {/* User recents Project */}    
+      <div>project recents : {recentProject}</div>
 
 
     </>

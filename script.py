@@ -1,4 +1,4 @@
 a = {"1": {"name": "yaya"}}
 
-print(a["1"])
+print(a["1"]["name"])
 
