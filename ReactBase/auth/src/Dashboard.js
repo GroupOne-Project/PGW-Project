@@ -7,10 +7,12 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 
 
 function Dashboard() {
+
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [projects, setProjects] = useState("");
-  const [recentProject, setRecentProjects] = useState("");
+  const [recentProjects, setRecentProjects] = useState("");
+  // const [recentProjectss, setRecentProjectss] = useState("");
   const navigate = useNavigate();
 
 
@@ -18,18 +20,29 @@ function Dashboard() {
   // const project = data.project;
   // console.log(project);
   const fetchUserProject = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
 
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      const projects = doc.data().projects;      
-      setProjects(projects)
-      console.log(projects);
-      const recentProject = projects["1"]["name"];
-      setRecentProjects(recentProject)
-    });
-    
-  };
+      setProjects(data.projects);
+      console.log(data.projects)
+      // get all recents projects id and name
+      const recentProjects = [];
+      for (var [key, value] of  Object.entries(data.projects)) {
+        const e = `${key}: ${value["name"]}`;
+        recentProjects.push(e);
+        console.log(recentProjects);
+        const recentProjects = recentProjects.map((recentProject) => <li>{recentProject}</li>);
+        setRecentProjects(recentProjects);
+      }
+      // setRecentProjects(recentProjects);
+
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  }; 
 
   // Fetch userName when userID
   const fetchUserName = async () => {
@@ -77,11 +90,13 @@ function Dashboard() {
         </button>
       </div>
 
-      {/* User recents Project */}    
-      <div>project recents : {recentProject}</div>
-
+      {/* User recents Project */}
+      <button>
+        <Link to="/project">Project Recent : {recentProjects}</Link>        
+      </button>
 
     </>
+
   );
 }
 

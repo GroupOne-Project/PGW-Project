@@ -44,7 +44,8 @@ const db = getFirestore(app);
 //   'precedent': 0,
 // },
 const projects = {
-  "1" : {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
+  "1" : {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}},
+  "2" : {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
 };
 
 const googleProvider = new GoogleAuthProvider();
