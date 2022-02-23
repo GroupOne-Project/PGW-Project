@@ -39,8 +39,8 @@ function Dashboard() {
         const recentProjectss = recentProjects.map((recentProject) => 
             <button>
 
-                {/* <div>{recentProject}</div>  */}
-                <a href={ `/project=${recentProject[0]}` }>{recentProject}</a>
+                {/* route to project page fetching project id */}
+                <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>
                 
             </button>
           );
