@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore"; 
 
 import { getDatabase, ref, set } from "firebase/database"
 
@@ -32,22 +32,13 @@ const Create_project = () => {
 
             // const res = await createUserWithEmailAndPassword(auth, email, password);
             // const user = res.user;
-            // await addDoc(collection(db, "users"), {
-            //   uid: user.uid,
-            //   name,
-            //   authProvider: "local",
-            //   email,
-            //   projects,
+            // const entrie = collection(db, "users");
+
+            // await setDoc(doc(entrie), {
+            //     projects: projects
             // });
-        
-
-            // Add a new document in collection "user"
-            await setDoc(doc(db, "user", "projects"), {
-              projects: projects
-            });
-
             // set on Firestore the user information
-            // set(ref(db, 'users/' + user.uid), {
+            // updateDoc(ref(db, 'users/'+ `${doc.id}`),{
             //     projects: projects
             // });
             console.log(projects);

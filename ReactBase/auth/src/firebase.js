@@ -33,6 +33,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+const projects = {};
 
 // user projects
 // 'name': '',
@@ -86,17 +87,18 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       uid: user.uid,
       name,
       authProvider: "local",
-      email      
+      email,
+      projects
     });
 
 
     // set on Firestore the user information
-    // set(ref(db, 'users/' + user.uid), {
-    //   username: name,
-    //   name: name,
-    //   email: email,
-    //   projects: projects
-    // });
+    set(ref(db, 'users/' + user.uid), {
+      username: name,
+      name: name,
+      email: email,
+      projects: projects
+    });
 
   } catch (err) {
     console.error(err);
