@@ -11,7 +11,39 @@ import Dashboard from "./Dashboard";
 
 const Create_project = () => {
 
+  // Fetch userProject when userID
+  const fetchUserProject = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+
+      setProjects(data.projects);
+      console.log(data.projects);
+      
+
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  }; 
+
+    // Fetch userName using user?.uid
+    const fetchUserName = async () => {
+      try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+
+        setName(data.name);
+      } catch (err) {
+        console.error(err);
+        alert("An error occured while fetching user data");
+      }
+    }; 
+
     // Dashborad call
+    const [projects, setProjects] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     // const [projects, setProjects] = useState("");
@@ -19,29 +51,41 @@ const Create_project = () => {
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
-    
-        // fetchUserName();
+      
+        fetchUserProject()
+        fetchUserName();
     }, [user, loading]);
     
-    const projects = {
-        "1" : {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
-    };
+    const newProjects =
+      {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
+    ;
 
     const createNewProject = async () => {        
         try {    
 
-            // const res = await createUserWithEmailAndPassword(auth, email, password);
-            // const user = res.user;
-            // const entrie = collection(db, "users");
+            // onst q = query(collection(db, "users"), where("uid", "==", user?.uid));
+            const userDocByName = doc(db, "users", name);
+            const projectsMap = Object.entries(projects);
+            // console.log(projectsMap[0][0]);
+            if ( !projectsMap[0][0] ){
+              projects["1"] = newProjects;              
+              await updateDoc(userDocByName, {
+                projects: projects
+              });
+              console.log("ok");
+            } else {
+              const projectsMap = Object.entries(projects);
+              // get last project id
+              const projectsId = projectsMap[projectsMap.length -1][0];
+              const newProjectsId = parseInt(parseInt(projectsId)+1);
 
-            // await setDoc(doc(entrie), {
-            //     projects: projects
-            // });
-            // set on Firestore the user information
-            // updateDoc(ref(db, 'users/'+ `${doc.id}`),{
-            //     projects: projects
-            // });
-            console.log(projects);
+              projects[newProjectsId] = newProjects;
+              // console.log(typeof(newProjectsId));
+              await updateDoc(userDocByName, {
+                projects: projects
+              });
+              console.log("not");
+            }
         
           } catch (err) {
             console.error(err);

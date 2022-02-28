@@ -12,6 +12,8 @@ import {
   getFirestore,
   query,
   getDocs,
+  doc,
+  setDoc,
   collection,
   where,
   addDoc,
@@ -73,31 +75,25 @@ const logInWithEmailAndPassword = async (email, password) => {
   } catch (err) {
     console.error(err);
     console.log(err.message);
+    alert(err.message);
   }
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
 
   try {    
+        
+    // set on Firestore the user informations on user doc call {name}
+    const userDoc = collection(db, "users");
 
-    // console.log(project);
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    await setDoc(doc(userDoc, name), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
       projects
-    });
-
-
-    // set on Firestore the user information
-    set(ref(db, 'users/' + user.uid), {
-      username: name,
-      name: name,
-      email: email,
-      projects: projects
     });
 
   } catch (err) {

@@ -1,4 +1,11 @@
-a = {"1": {"name": "yaya"}}
+import matplotlib.pyplot as plt
 
-print(a["1"]["name"])
+import numpy as np
 
+x = np.linspace(-3, 3)
+
+y = (2 * x) + 1
+
+plt.plot(x, y)
+
+plt.show()
