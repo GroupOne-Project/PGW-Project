@@ -6,9 +6,8 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore"; 
 
 import { getDatabase, ref, set } from "firebase/database"
-import Dashboard from "./Dashboard";
 
-import "./Create_project.css";
+import Dashboard from "./Dashboard";
 
 const Create_project = () => {
 
@@ -43,18 +42,12 @@ const Create_project = () => {
       }
     }; 
 
-    // Dashborad call (les variables)
-    const [projectId, setProjectId] = useState("");
-    const [projectName, setProjectName] = useState("");
-    const [responsableName, setResponsableName] = useState("");
-    const [dateIn, setDateIn] = useState("");
-    const [dateOut, setDateOut] = useState("");
-    const [description, setDescription] = useState("");
-
+    // Dashborad call les variables
     const [projects, setProjects] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     // const [projects, setProjects] = useState("");
+
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) return;
@@ -64,44 +57,39 @@ const Create_project = () => {
         fetchUserName();
     }, [user, loading]);
     
-    // set new project  
-    // setProjectId(1);
-    const newProjects = { 'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,} };
+    const newProjects =
+      {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
+    ;
 
     const createNewProject = async () => {        
         try {    
 
-            // const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
-            // alert(projectsMap.length);
             if ( projectsMap.length == 0 ){
-              projects["1"] = newProjects;
-              console.log(projects);
-              alert("ok new project");
+              projects["1"] = newProjects;              
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              alert("send");
+              console.log("ok new project set");
             } else {
-              alert("not first project");
               const projectsMap = Object.entries(projects);
+
               // get last project id
-              
-              const projectsId = projectsMap.length;        
-              const newProjectsId = parseInt(parseInt(projectsId)+1);             
+              const projectsId = projectsMap.length;
+              const newProjectsId = parseInt(parseInt(projectsId)+1);
 
               projects[newProjectsId] = newProjects;
               // console.log(typeof(newProjectsId));
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              alert("send");
+              console.log("not new project but set");
             }
         
           } catch (err) {
             console.error(err);
-            alert(err.message);
+            console.log(err.message);
         }
     };
 
@@ -112,37 +100,19 @@ const Create_project = () => {
         // createNewProject();
     }, [user, loading]);
 
+
     return (
-        <>            
-            {/* <input id="number" 
-                type="time" 
-                onChange={(evt) => { setProjectName(evt.target.value); console.log(projectName)}}>
-            </input> */}
-            
+        <>
+ 
+
             {/* Main */}
-            {/* <div className="create-project">Welcome to create Project</div>
-            <button onClick={createNewProject}>Create</button> */}
-            <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"></link>
+            <div className="create-project">Welcome to create Project</div>
+            <button onClick={createNewProject}>Create</button>
 
-            <div className="form">
-              <form>
-                <div className="title">Nouveau projet</div>
-                <div className="inputs">
-                  <input type="text" placeholder="Nom du projet"></input>
-                  <input type="text" placeholder="Responsable"></input>
-                  <input type="date" placeholder="Date de debut"></input>
-                  <input type="date" placeholder="Date de fin"></input>
-                  <input type="text" placeholder="Description"></input>
-                </div>
-
-                <div>
-                  <button href={`/project?$`} onClick={createNewProject} className="ok" type="submit">Ok</button>                  
-                  <button className="annuler" type="submit">Annuler</button>
-                  <button className="help" type="submit">Help</button>
-                </div>
-              </form>
-            </div>
-
+            {/* Get all data about self project and save this last one into Firebase / Firestore */}
+            
+            
+            
         </>
     );
     
