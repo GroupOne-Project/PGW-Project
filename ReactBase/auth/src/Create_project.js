@@ -6,8 +6,9 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore"; 
 
 import { getDatabase, ref, set } from "firebase/database"
-
 import Dashboard from "./Dashboard";
+
+import "./Create_project.css";
 
 const Create_project = () => {
 
@@ -42,7 +43,13 @@ const Create_project = () => {
       }
     }; 
 
-    // Dashborad call
+    // Dashborad call (les variables)
+    const [projectName, setProjectName] = useState("");
+    const [responsableName, setResponsableName] = useState("");
+    const [dateIn, setDateIn] = useState("");
+    const [dateOut, setDateOut] = useState("");
+    const [description, setDescription] = useState("");
+
     const [projects, setProjects] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
@@ -56,9 +63,8 @@ const Create_project = () => {
         fetchUserName();
     }, [user, loading]);
     
-    const newProjects =
-      {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
-    ;
+    // set new project
+    const newProjects = {'name': projectName,'responsable': responsableName,'date_in': dateIn,'date_out': dateOut,'description': description};    
 
     const createNewProject = async () => {        
         try {    
@@ -72,7 +78,7 @@ const Create_project = () => {
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              console.log("ok");
+              console.log("ok new project");
             } else {
               const projectsMap = Object.entries(projects);
               // get last project id
@@ -84,12 +90,12 @@ const Create_project = () => {
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              console.log("not");
+              console.log("not first project");
             }
         
           } catch (err) {
             console.error(err);
-            console.log(err.message);
+            alert(err.message);
         }
     };
 
@@ -100,30 +106,37 @@ const Create_project = () => {
         // createNewProject();
     }, [user, loading]);
 
-
     return (
-        <>
-            {/* Dashboard */}
-            {/* <div className="dashboard">
-                <div className="dashboard__container">
-                    <div>Welcome</div>
-                    Logged in as
-                    <div>{user?.email.split("@")[0]}</div>
-                    <div>With email:</div>
-                    <div>{user?.email}</div>
-                    <button className="dashboard__btn" onClick={logout}>
-                        Logout
-                    </button>
-                </div>
-            </div> */}
-
+        <>            
+            {/* <input id="number" 
+                type="time" 
+                onChange={(evt) => { setProjectName(evt.target.value); console.log(projectName)}}>
+            </input> */}
+            
             {/* Main */}
-            <div className="create-project">Welcome to create Project</div>
-            <button onClick={createNewProject}>Create</button>
+            {/* <div className="create-project">Welcome to create Project</div>
+            <button onClick={createNewProject}>Create</button> */}
+            <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"></link>
 
-            {/* Get all data about self project and save this last one into Firebase / Firestore */}
-            
-            
+            <div className="form">
+              <form>
+                <div className="title">Nouveau projet</div>
+                <div className="inputs">
+                  <input type="text" placeholder="Nom du projet"></input>
+                  <input type="text" placeholder="Responsable"></input>
+                  <input type="date" placeholder="Date de debut"></input>
+                  <input type="date" placeholder="Date de fin"></input>
+                  <input type="text" placeholder="Description"></input>
+                </div>
+
+                <div>
+                  <button href={`/project?$`} onClick={createNewProject} className="ok" type="submit">Ok</button>                  
+                  <button className="annuler" type="submit">Annuler</button>
+                  <button className="help" type="submit">Help</button>
+                </div>
+              </form>
+            </div>
+
         </>
     );
     
