@@ -44,6 +44,7 @@ const Create_project = () => {
     }; 
 
     // Dashborad call (les variables)
+    const [projectId, setProjectId] = useState("");
     const [projectName, setProjectName] = useState("");
     const [responsableName, setResponsableName] = useState("");
     const [dateIn, setDateIn] = useState("");
@@ -63,34 +64,39 @@ const Create_project = () => {
         fetchUserName();
     }, [user, loading]);
     
-    // set new project
-    const newProjects = {'name': projectName,'responsable': responsableName,'date_in': dateIn,'date_out': dateOut,'description': description};    
+    // set new project  
+    // setProjectId(1);
+    const newProjects = { 'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,} };
 
     const createNewProject = async () => {        
         try {    
 
-            // onst q = query(collection(db, "users"), where("uid", "==", user?.uid));
+            // const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
-            // console.log(projectsMap[0][0]);
-            if ( !projectsMap[0][0] ){
-              projects["1"] = newProjects;              
+            // alert(projectsMap.length);
+            if ( projectsMap.length == 0 ){
+              projects["1"] = newProjects;
+              console.log(projects);
+              alert("ok new project");
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              console.log("ok new project");
+              alert("send");
             } else {
+              alert("not first project");
               const projectsMap = Object.entries(projects);
               // get last project id
-              const projectsId = projectsMap[projectsMap.length -1][0];
-              const newProjectsId = parseInt(parseInt(projectsId)+1);
+              
+              const projectsId = projectsMap.length;        
+              const newProjectsId = parseInt(parseInt(projectsId)+1);             
 
               projects[newProjectsId] = newProjects;
               // console.log(typeof(newProjectsId));
               await updateDoc(userDocByName, {
                 projects: projects
               });
-              console.log("not first project");
+              alert("send");
             }
         
           } catch (err) {

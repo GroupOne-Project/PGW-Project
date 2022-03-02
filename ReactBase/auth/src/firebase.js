@@ -38,14 +38,15 @@ const db = getFirestore(app);
 const projects = {};
 
 // user projects
+// const projects = {
 // 'name': '',
 // 'task': {
 //   'id': 0,
 //   'label': '',
 //   'date_start': '',
 //   'date_end': '',
-//   'precedent': 0,
-// },
+//   'precedent': 0,}
+// };
 
 const googleProvider = new GoogleAuthProvider();
 
