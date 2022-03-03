@@ -1,0 +1,180 @@
+<! DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta charset="UTF-8">  
+<title> JavaScript editable table </title>  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">  
+<link rel="stylesheet" href="style.css">
+</head>  
+
+<body>
+
+<!-- <h1>WBS</h1> 
+<div class="container">  
+  <h1> JavaScript Editable Table </h1>  
+  <div id="table" class="table-editable">  
+    <table class="table">  
+      <tr>  
+        <th> Name</th>  
+        <th> Roll No </th>  
+        <th> Class </th>  
+        <th> Marks </th>  
+      </tr>  
+      <tr>  
+        <td contenteditable="true"> Ram </td>  
+        <td contenteditable="true"> 1 </td>  
+        <td contenteditable="true"> BA </td>  
+    <td contenteditable="true"> 48 </td>  
+      </tr>  
+<tr>  
+        <td contenteditable="true"> Rama </td>  
+        <td contenteditable="true"> 10 </td>  
+       <td contenteditable="true"> BSC </td>  
+  <td contenteditable="true"> 40 </td>  
+      </tr>  
+        <tr>  
+        <td contenteditable="true"> sham </td>  
+        <td contenteditable="true"> 8 </td>  
+       <td contenteditable="true"> BCA </td>  
+      <td contenteditable="true"> 34 </td>  
+      </tr>  
+    <tr>  
+        <td contenteditable="true"> shama </td>  
+        <td contenteditable="true"> 3 </td>  
+    <td contenteditable="true"> BCA </td>  
+    <td contenteditable="true"> 30 </td>  
+      </tr>  
+    </table>  
+  </div>  
+</div>   -->
+<div class="container">
+  <div class="titre">wbs</div>
+  <div class="tableau">
+
+    <table summary="Editable table with datasets ordered in columns" class="table-fill">  
+      <tbody>
+        
+        <tr>  
+          <th scope="col"> Nom de la tache </th>  
+          <th scope="col"> Duree </th>  
+          <th scope="col"> Date debut </th>  
+          <th scope="col"> Date fin </th> 
+          <th scope="col"> Predecesseur </th>  
+    
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>  
+          
+      
+      </tbody>  
+    </table> 
+  </div>  
+
+</div>
+
+<br />  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+<script>  
+var table = document.querySelector('table');  
+var dataCells = table.querySelectorAll('tr > td');  
+var rows = table.querySelectorAll('tr');  
+var code = document.querySelector('code');  
+var resetButton = document.querySelector('.reset');  
+rows = Array.prototype.slice.call(rows, 1);  
+var ncols = rows[0].children.length - 1;  
+var initialData = {0:[1,2,3,4,5],1:[6,7,8,9,10],2:[11,12,13,14,15]};  
+function parseTable () {  
+  var d = {};  
+  Array.prototype.forEach.call(rows, function (row, i) {  
+    var rowrowCells = row.querySelectorAll('td');  
+    return Array.prototype.map.call(rowCells, function (cell, j) {  
+      if (!d[j]) d[j] = [];  
+      d[j].push(parseInt(cell.textContent, 10));  
+    });  
+  });  
+  return d;  
+}  
+function setTableData (data) {  
+  Array.prototype.forEach.call(rows, function (row, i) {  
+    var rowrowCells = row.querySelectorAll('td');  
+    return Array.prototype.map.call(rowCells, function (cell, j) {  
+      cell.textContent = initialData[j][i];  
+    });  
+  });  
+}  
+Array.prototype.forEach.call(dataCells, function (cell) {  
+  cell.contentEditable = true;  
+});  
+table.addEventListener('keyup', function (e) {  
+  if (e.target.tagName === 'TD') {  
+    setTimeout(function () {  
+      code.innerText = JSON.stringify( parseTable() );  
+    }, 0);  
+  }  
+});  
+</script>  
+</body>  
+</html>  
