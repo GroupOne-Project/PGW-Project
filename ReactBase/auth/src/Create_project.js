@@ -8,6 +8,7 @@ import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore";
 import { getDatabase, ref, set } from "firebase/database"
 
 import Dashboard from "./Dashboard";
+import "./Create_project.css";
 
 const Create_project = () => {
 
@@ -57,13 +58,24 @@ const Create_project = () => {
         fetchUserName();
     }, [user, loading]);
     
-    const newProjects =
-      {'name': '','task': {'id': 0,'label': '','date_start': '','date_end': '','precedent': 0,}}
-    ;
-
+    // les inputs
+    const newProjects = {
+        'name': '',
+        'task': {
+          'id': 0,
+          'label': '',
+          'date_start': '',
+          'date_end': '',
+          'precedent': 0
+        }
+    };
+    
     const createNewProject = async () => {        
-        try {    
-
+      try {    
+        
+            const inputName = document.getElementById("name");
+            console.log(inputName);
+        
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
             if ( projectsMap.length == 0 ){
@@ -111,6 +123,24 @@ const Create_project = () => {
 
             {/* Get all data about self project and save this last one into Firebase / Firestore */}
             
+            <div className="form">
+              {/* <form> */}
+                <h5>Nouveau projet</h5>
+                <div className="inputs">
+                  <input id="name" type="text" placeholder="Nom du projet" title="Donner un nom au projet"></input>
+                  <input type="text" placeholder="Responsable" title="Donner le nom du responsable"></input>
+                  <input type="date" placeholder="Date de debut" title="Choisisser la date de debut"></input>
+                  <input type="date" placeholder="Date de fin" title="Choisisser la date de fin"></input>
+                  <input type="text" placeholder="Description" title="Donner une description au projet"></input>
+                </div>
+
+                <div className="valide">
+                  <button onClick={createNewProject} className="ok" type="submit">Ok</button>
+                  <button className="annuler" type="submit">Annuler</button>
+                  <button className="help" type="submit">Aide</button>
+                </div>
+              {/* </form> */}
+            </div>
             
             
         </>

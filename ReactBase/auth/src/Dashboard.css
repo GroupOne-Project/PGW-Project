@@ -28,3 +28,22 @@
 .main {
   margin-top: 7%;
 }
+
+.valide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.valide button {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.ok:hover {
+  border: 1px solid darkblue;
+}
+.annuler:hover {
+  border: 1px solid darkred;
+}
+.help:hover {
+  border: 1px solid darkgreen;
+}
