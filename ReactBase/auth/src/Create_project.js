@@ -48,6 +48,11 @@ const Create_project = () => {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     // const [projects, setProjects] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [responsable, setResponsable] = useState("");
+    const [date_start, setDateStart] = useState("");
+    const [date_end, setDateEnd] = useState("");
+    const [description, setDescription] = useState("");
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -58,24 +63,33 @@ const Create_project = () => {
         fetchUserName();
     }, [user, loading]);
     
-    // les inputs
+    // le project map
+    // 'task': {
+    //   'id': 0,
+    //   'label': '',
+    //   'date_start': '',
+    //   'date_end': '',
+    //   'precedent': 0
+    // }
     const newProjects = {
         'name': '',
-        'task': {
-          'id': 0,
-          'label': '',
-          'date_start': '',
-          'date_end': '',
-          'precedent': 0
-        }
+        'responsable': '',
+        'date-start': '',
+        'date_end': '',
+        'description': ''
     };
     
     const createNewProject = async () => {        
-      try {    
-        
-            const inputName = document.getElementById("name");
-            console.log(inputName);
-        
+      try {
+            
+            const newProjects = {
+                'name': projectName,
+                'responsable': responsable,
+                'date-start': date_start,
+                'date_end': date_end,
+                'description': description
+            };
+
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
             if ( projectsMap.length == 0 ){
@@ -118,8 +132,8 @@ const Create_project = () => {
  
 
             {/* Main */}
-            <div className="create-project">Welcome to create Project</div>
-            <button onClick={createNewProject}>Create</button>
+            {/* <div className="create-project">Welcome to create Project</div>
+            <button onClick={createNewProject}>Create</button> */}
 
             {/* Get all data about self project and save this last one into Firebase / Firestore */}
             
@@ -127,11 +141,11 @@ const Create_project = () => {
               {/* <form> */}
                 <h5>Nouveau projet</h5>
                 <div className="inputs">
-                  <input id="name" type="text" placeholder="Nom du projet" title="Donner un nom au projet"></input>
-                  <input type="text" placeholder="Responsable" title="Donner le nom du responsable"></input>
-                  <input type="date" placeholder="Date de debut" title="Choisisser la date de debut"></input>
-                  <input type="date" placeholder="Date de fin" title="Choisisser la date de fin"></input>
-                  <input type="text" placeholder="Description" title="Donner une description au projet"></input>
+                  <input onChange={(e) => setProjectName(e.target.value)} type="text" placeholder="Nom du projet" title="Donner un nom au projet"></input>
+                  <input onChange={(e) => setResponsable(e.target.value)} type="text" placeholder="Responsable" title="Donner le nom du responsable"></input>
+                  <input onChange={(e) => setDateStart(e.target.value)} type="date" placeholder="Date de debut" title="Choisisser la date de debut"></input>
+                  <input onChange={(e) => setDateEnd(e.target.value)} type="date" placeholder="Date de fin" title="Choisisser la date de fin"></input>
+                  <input onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Description" title="Donner une description au projet"></input>
                 </div>
 
                 <div className="valide">
