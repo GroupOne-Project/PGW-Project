@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHref, useNavigate } from "react-router-dom";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore"; 
+import { doc, setDoc, updateDoc, addDoc} from "firebase/firestore";
 
 import { getDatabase, ref, set } from "firebase/database"
 
 import Dashboard from "./Dashboard";
 import "./Create_project.css";
+import { async } from "@firebase/util";
 
 const Create_project = () => {
 
@@ -31,7 +32,7 @@ const Create_project = () => {
 
     // Fetch userName using user?.uid
     const fetchUserName = async () => {
-      try {
+      try {        
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
@@ -47,6 +48,8 @@ const Create_project = () => {
     const [projects, setProjects] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
+    const [newProjectsId, setNewProjectId] = useState("");
+    const [openNew, setOpenNew] = useState("");
     // const [projects, setProjects] = useState("");
     const [projectName, setProjectName] = useState("");
     const [responsable, setResponsable] = useState("");
@@ -80,8 +83,8 @@ const Create_project = () => {
     };
     
     const createNewProject = async () => {        
-      try {
-            
+      try {                  
+
             const newProjects = {
                 'name': projectName,
                 'responsable': responsable,
@@ -104,14 +107,17 @@ const Create_project = () => {
               // get last project id
               const projectsId = projectsMap.length;
               const newProjectsId = parseInt(parseInt(projectsId)+1);
+              setNewProjectId(parseInt(parseInt(projectsId)+1));
 
               projects[newProjectsId] = newProjects;
-              // console.log(typeof(newProjectsId));
+              console.log(newProjectsId);
               await updateDoc(userDocByName, {
                 projects: projects
               });
               console.log("not new project but set");
             }
+            
+            fetchUserProject();
         
           } catch (err) {
             console.error(err);
@@ -149,7 +155,9 @@ const Create_project = () => {
                 </div>
 
                 <div className="valide">
-                  <button onClick={createNewProject} className="ok" type="submit">Ok</button>
+                  <button onClick={createNewProject} className="ok" type="submit">Create</button>
+                  <a className="open" href={ `/project?${newProjectsId}` }>Open</a>
+                  {/* <button href={ `/project?${newProjectsId}` } className="ok" type="submit">Open</button> */}
                   <button className="annuler" type="submit">Annuler</button>
                   <button className="help" type="submit">Aide</button>
                 </div>

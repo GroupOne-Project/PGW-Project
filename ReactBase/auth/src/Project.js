@@ -10,6 +10,7 @@ function Project() {
     
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1];
+    console.log("ok");
     console.log(projectId);
 
     const [projects, setProjects] = useState("");
@@ -39,7 +40,7 @@ function Project() {
     }, [user, loading]);
     
     return (
-        <div>Hi</div>
+        <div>Hi welcome</div>
     );
 
 }
