@@ -4,14 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
+
 function Project() {
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-    
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1];
     console.log("ok");
     console.log(projectId);
+
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();        
 
     const [projects, setProjects] = useState("");
     
@@ -39,9 +40,24 @@ function Project() {
         // fetchUserName();
     }, [user, loading]);
     
-    return (
-        <div>Hi welcome</div>
-    );
+
+    // les render(s)
+    if (projectId == 0) {
+        console.log("return");        
+        return (
+            <div className="retour">
+                <div>Retour</div>
+                <button>
+                    <Link to="/create_project">Create Project</Link>
+                </button>
+            </div>
+        );
+    } else {
+        console.log("yes");
+        return (
+            <div>Hi welcome</div>
+        );
+    }
 
 }
 

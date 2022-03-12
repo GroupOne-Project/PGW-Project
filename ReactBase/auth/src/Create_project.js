@@ -12,7 +12,7 @@ import "./Create_project.css";
 import { async } from "@firebase/util";
 
 const Create_project = () => {
-
+  
   // Fetch userProject when userID
   const fetchUserProject = async () => {
     try {
@@ -155,11 +155,12 @@ const Create_project = () => {
                 </div>
 
                 <div className="valide">
-                  <button onClick={createNewProject} className="ok" type="submit">Create</button>
-                  <a className="open" href={ `/project?${newProjectsId}` }>Open</a>
+                  <button onClick={createNewProject} className="ok" type="submit">Creer</button>
+                  
+                  <a className="help" href={ `/project?${newProjectsId}` }>Ouvrir</a>
                   {/* <button href={ `/project?${newProjectsId}` } className="ok" type="submit">Open</button> */}
+                  {/* <button className="help" type="submit">Aide</button> */}
                   <button className="annuler" type="submit">Annuler</button>
-                  <button className="help" type="submit">Aide</button>
                 </div>
               {/* </form> */}
             </div>
