@@ -4,7 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import { async } from "@firebase/util";
 
+import { deleteDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
 
 function Dashboard() {
 
@@ -14,6 +17,16 @@ function Dashboard() {
   const [recentProjects, setRecentProjects] = useState("");
   const [recentProjectss, setRecentProjectss] = useState("");
   const navigate = useNavigate();
+
+
+  const deleteUser = async () => {
+    console.log("let's delet");
+    const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+    const doc = await getDocs(q);
+    const data = doc.docs[0].data();
+    // await deleteDoc(data); ::::::::::::::::: no work :::::::::::::::::::::::
+    console.log("user delete yes");
+  };
 
 
   // Fetch userProject when userID
@@ -36,13 +49,15 @@ function Dashboard() {
 
 
       // retrun format of project recent
-      const recentProjectss = recentProjects.map((recentProject) => 
+      const recentProjectss = recentProjects.map((recentProject) =>
+          <div>
             <button>
 
                 {/* route to project page fetching project id */}
-                <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>
-                
+                <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>              
+
             </button>
+          </div>
           );
 
         setRecentProjects(recentProjectss);
@@ -91,6 +106,9 @@ function Dashboard() {
           <button className="dashboard__btn" onClick={logout}>
             Logout
           </button>
+        </div>
+        <div>
+          <button onClick={(event) => [deleteUser(), logout()]}>Delete Account</button>
         </div>
       </div>
       

@@ -67,7 +67,17 @@ div .help:hover{
     text-decoration: underline;
 }
 .annuler{
+    margin-left: 2%;
+    text-decoration: none;
     background-color: #D13838;
+    padding: 15px 25px;
+    border-radius: 5px;
+    border:none;
+    font-size: 15px;
+    color: #fff;
+    outline:none;
+    cursor:pointer;
+    font-weight: bold;
 }
 .help{
     text-decoration: none;

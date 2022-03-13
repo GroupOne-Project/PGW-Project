@@ -160,7 +160,7 @@ const Create_project = () => {
                   <a className="help" href={ `/project?${newProjectsId}` }>Ouvrir</a>
                   {/* <button href={ `/project?${newProjectsId}` } className="ok" type="submit">Open</button> */}
                   {/* <button className="help" type="submit">Aide</button> */}
-                  <button className="annuler" type="submit">Annuler</button>
+                  <a className="annuler" type="submit" href="/dashboard">Annuler</a>
                 </div>
               {/* </form> */}
             </div>
