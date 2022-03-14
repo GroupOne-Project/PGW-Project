@@ -31,6 +31,7 @@ function Project() {
         }
       }; 
 
+
     const deleteUserProject = async () => {
         // delete user project by id
         const projectToDeleteId = projectId;
@@ -46,9 +47,9 @@ function Project() {
             const projectsMap = Object.entries(projects);
             console.log("all");
             console.log(projectsMap);
-            const projectsMaps = projectsMap.delete(projectToDeleteId);
+            projectsMap.delete(projectToDeleteId);
             console.log("ok");
-            console.log(projectsMaps);
+            console.log(projectsMap);
 
           } catch (err) {
             console.error(err);
