@@ -7,6 +7,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 
 function Project() {
+
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1];
     console.log("ok");
@@ -16,6 +17,7 @@ function Project() {
     const navigate = useNavigate();        
     const [name, setName] = useState("");
     const [projects, setProjects] = useState("");
+    const [projectsAfterDel, setProjectsAfterDel] = useState("");
     
      // Fetch userName using user?.uid
      const fetchUserName = async () => {
@@ -34,22 +36,41 @@ function Project() {
 
     const deleteUserProject = async () => {
         // delete user project by id
-        const projectToDeleteId = projectId;
+        const projectToDeleteId = parseInt(projectId);        
         console.log("id to del",projectToDeleteId);
         // const cityRef = doc(db, 'cities', 'BJ');
         // Remove the 'capital' field from the document
         // await updateDoc(cityRef, {
           // projects: deleteField()
         // });
-        try {                  
+        try {                
+            const projectsAfterDel = {};
 
             const userDocByName = doc(db, "users", name);
-            const projectsMap = Object.entries(projects);
+            const projectsMap = Object.entries(projects);            
             console.log("all");
             console.log(projectsMap);
-            projectsMap.delete(projectToDeleteId);
-            console.log("ok");
-            console.log(projectsMap);
+            console.log(typeof(projectsMap));
+            
+            // le map est en fait un tableau ou chaqke id est la pos dans le tableau
+            for( var i = 0; i < projectsMap.length; i++){             
+                if ( projectsMap[i][0] == projectToDeleteId ) {                     
+                    projectsMap.splice(i, 1);
+                    console.log('ok dell');
+                }            
+            }
+
+            for( var i = 0; i < projectsMap.length; i++){             
+                projectsAfterDel[projectsMap[i][0]] = projectsMap[i][1]
+            }
+            // console.log(projectsAfterDel);
+
+            await updateDoc(userDocByName, {
+                projects: projectsAfterDel
+            });
+            console.log('dell');
+            alert("Projet supprimer avec succes, Vous pouvez retourner au Menu");
+            alert("")
 
           } catch (err) {
             console.error(err);
@@ -97,8 +118,10 @@ function Project() {
 
         return (            
             <>
+                <button><Link to="/dashboard">Home</Link></button>
+
                 <div>
-                    <button onClick={deleteUserProject}>delete this project</button>
+                    <button onClick={(event) => [deleteUserProject()]}>delete this project</button>
                 </div>
 
                 <div>Hi welcome</div>

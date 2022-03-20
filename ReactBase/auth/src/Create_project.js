@@ -96,7 +96,8 @@ const Create_project = () => {
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
             if ( projectsMap.length == 0 ){
-              projects["1"] = newProjects;              
+              setNewProjectId(1);
+              projects[newProjectsId] = newProjects;              
               await updateDoc(userDocByName, {
                 projects: projects
               });
@@ -106,7 +107,7 @@ const Create_project = () => {
 
               // get last project id
               const projectsId = projectsMap.length;
-              const newProjectsId = parseInt(parseInt(projectsId)+1);
+              newProjectsId = parseInt(parseInt(projectsId)+1);
               setNewProjectId(parseInt(parseInt(projectsId)+1));
 
               projects[newProjectsId] = newProjects;
