@@ -8,6 +8,7 @@ import { async } from "@firebase/util";
 
 import { deleteDoc } from "firebase/firestore";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
+import { getAuth, deleteUser } from "firebase/auth";
 
 function Dashboard() {
 
@@ -20,12 +21,7 @@ function Dashboard() {
 
 
   const deleteUser = async () => {
-    console.log("let's delet");
-    const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-    const doc = await getDocs(q);
-    const data = doc.docs[0].data();
-    // await deleteDoc(data); ::::::::::::::::: no work :::::::::::::::::::::::
-    console.log("user delete yes");
+    console.log("let's delet");    
   };
 
 
@@ -108,7 +104,7 @@ function Dashboard() {
           </button>
         </div>
         <div>
-          <button onClick={(event) => [deleteUser(), logout()]}>Delete Account</button>
+          <button onClick={deleteUser}>Delete Account</button>
         </div>
       </div>
       
