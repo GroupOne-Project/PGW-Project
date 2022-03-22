@@ -96,18 +96,23 @@ const Create_project = () => {
             const userDocByName = doc(db, "users", name);
             const projectsMap = Object.entries(projects);
             if ( projectsMap.length == 0 ){
+              const newProjectsId = 1;
               setNewProjectId(1);
-              projects[newProjectsId] = newProjects;              
+              console.log(newProjectsId);
+              projects[newProjectsId] = newProjects;  
+              console.log(projects);
               await updateDoc(userDocByName, {
                 projects: projects
               });
               console.log("ok new project set");
+              alert("Projet créer avec succes");
             } else {
+              console.log(projects);
               const projectsMap = Object.entries(projects);
 
               // get last project id
               const projectsId = projectsMap.length;
-              newProjectsId = parseInt(parseInt(projectsId)+1);
+              const newProjectsId = parseInt(parseInt(projectsId)+1);
               setNewProjectId(parseInt(parseInt(projectsId)+1));
 
               projects[newProjectsId] = newProjects;
@@ -116,6 +121,7 @@ const Create_project = () => {
                 projects: projects
               });
               console.log("not new project but set");
+              alert("Projet créer avec succes");
             }
             
             fetchUserProject();

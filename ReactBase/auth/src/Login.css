@@ -1,4 +1,4 @@
-.login {
+/* .login {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -35,4 +35,80 @@
 
 .login div {
   margin-top: 7px;
+} */
+
+/* ------------------------------ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background-color: #dfe6e9;
+  font-family: sans-serif;
+}
+
+/* -------------------------------- */
+
+.form{
+  margin-top: 100px;
+  background-color: #ffff;
+  /* padding: 40px 60px; */
+  border-radius: 10px;
+  /* min-width: 300px; */
+}
+.form h1{
+  color: #eb7371;  
+  /* color: #7688CF; */
+  text-align: center;
+}
+.inputs{
+   display:flex;
+   flex-direction: column;
+   outline: none;
+}
+.inputs input[type="email"], input[type="password"]{
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f2f2f2;
+  outline: none;
+}
+.form button{
+  border-radius: 5px;
+  color: #ffff;
+  background-color:#eb7371;
+    /* background-color: #7688CF; */
+}
+
+/* ---------- yayahc------------- */
+.form h1 {
+  margin-bottom: 30px;
+}
+.inputs {
+  margin: 10px;
+  margin-bottom: 10px;
+}
+.inputs input {
+  margin-bottom: 10px;
+}
+.inputs label {
+  margin-bottom: 5px;
+}
+.con, .con-google {
+  background-color:#eb7371;  
+  /* background-color: #7688CF; */
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+.forget-pass {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }

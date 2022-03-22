@@ -99,7 +99,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
   } catch (err) {
     console.error(err);
-    console.log(err.message);
+    alert(err.message);
   }
 };
 

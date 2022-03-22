@@ -1,4 +1,4 @@
-.register {
+/* .register {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -35,4 +35,32 @@
 
 .register div {
   margin-top: 7px;
+} */
+
+
+/* ---------------------------------- */
+
+
+.form h1 {
+  margin-bottom: 30px;
+}
+.inputs {
+  margin: 10px;
+  margin-bottom: 10px;
+}
+.inputs input {
+  margin-bottom: 10px;
+}
+.inputs label {
+  margin-bottom: 5px;
+}
+.con, .con-google {
+  background-color:#eb7371;  
+  /* background-color: #7688CF; */
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+.con:hover, .con-google:hover {
+  padding: 1%;
 }

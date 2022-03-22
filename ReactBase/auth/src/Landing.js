@@ -50,16 +50,16 @@ function Landing() {
                     <h3>Notre Equipe</h3>
                     <div className="images">
                         <div className="item">
-                            <img src="/images/kirito.jpg"></img>
-                            <p>lorem</p>
+                            <img src="/images/s.png"></img>
+                            <p>Soro Ange</p>
                         </div>
                         <div className="item">
-                            <img src="/images/kirito.jpg"></img>
-                            <p>lorem</p>
+                            <img src="/images/y.png"></img>
+                            <p>Yapi H.Joel</p>
                         </div>
                         <div className="item">
-                            <img src="/images/kirito.jpg"></img>
-                            <p>lorem</p>
+                            <img src="/images/f.jpeg"></img>
+                            <p>Kouassi K.Fernand</p>
                         </div>
                     </div>
                 </div>
@@ -72,6 +72,9 @@ function Landing() {
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, pariatur autem. Repellendus excepturi doloribus maiores blanditiis ab consequuntur maxime explicabo delectus officiis optio non, ullam ad labore fuga libero nemo!</p>                    
                 </div>
                 <img src="images/landing-teams-a19cfef3a4.png"></img>
+            </div>
+            <div className="get">
+                <a href="/Login">Get Started</a>
             </div>
         </div>
     );

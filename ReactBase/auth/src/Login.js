@@ -20,7 +20,31 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="login__container">
+      <div className="form">
+        <h1>CONNEXION</h1>
+        <div className="inputs">
+          <br></br>
+          <label>Email</label>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Entrez votre email"></input>          
+          <label>Mot de Pass</label>
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Entrez votre mot de pass"></input>
+        </div>
+
+        <div className="btn">
+          <div className="con">
+            <button onClick={() => logInWithEmailAndPassword(email, password)} type="submit">Se connecter</button>
+          </div>
+          <div className="con-google">
+            <button onClick={signInWithGoogle} type="submit">Se connecter avec Google</button>
+          </div>
+        </div>
+        <div className="forget">          
+          <div className="forget-pass"><Link to="/reset">Mot de pass oublier</Link></div>
+          <p>Je n'ai pas de compte <Link to="/register"> Créer un compte</Link></p>
+        </div>
+      </div>
+
+      {/* <div className="login__container">
         <input
           type="text"
           className="login__textBox"
@@ -50,8 +74,8 @@ function Login() {
         <div>
           Don't have an account? <Link to="/register">Register</Link> now.
         </div>
-      </div>
-    </div>
+      </div> */}
+    </div>    
   );
 }
 

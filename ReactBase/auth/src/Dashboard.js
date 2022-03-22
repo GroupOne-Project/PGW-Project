@@ -103,9 +103,9 @@ function Dashboard() {
             Logout
           </button>
         </div>
-        <div>
+        {/* <div>
           <button onClick={deleteUser}>Delete Account</button>
-        </div>
+        </div> */}
       </div>
       
       {/* Main */}
