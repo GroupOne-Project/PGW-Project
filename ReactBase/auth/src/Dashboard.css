@@ -78,8 +78,11 @@
 
 .logo img {
   /* position: relative; */
-  width: 50px;
-  
+  width: 35px;
+  justify-content: center;
+  display: flex;
+  align-items: center;  
+  margin-right: 20px;
 }
 
 .navigation {
@@ -95,7 +98,7 @@
   margin: 0 20px;
 }
 
-.navigation li a {
+/* .navigation li a {
   text-decoration: none;
   color: black;
   font-weight: 500;
@@ -103,12 +106,12 @@
   padding: 7px 13px;
   border-radius: 3px;
   text-transform: uppercase;
-}
+} */
 
-.navigation li a:hover{
+/* .navigation li a:hover{
   background: rgb(0, 128, 255);
   transition: .5s;
-}
+} */
 
 .search-box {
   display: flex;

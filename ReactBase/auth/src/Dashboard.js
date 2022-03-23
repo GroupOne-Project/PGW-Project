@@ -42,8 +42,8 @@ function Dashboard() {
         const e = `${key}: ${value["name"]}`;
         recentProjects.push(e);
         console.log(recentProjects);
-
-
+      
+      console.log(recentProjects);
       // retrun format of project recent
       const recentProjectss = recentProjects.map((recentProject) =>
           <div>                        
@@ -51,7 +51,7 @@ function Dashboard() {
                 <div class="item1">
                   <button>
                     {/* route to project page fetching project id */}
-                    <a className="recent-a" href={ `/project?${recentProject[0]}` }>{recentProject}</a>
+                    <a className="recent-a" href={ `/project?${recentProject}` }>{recentProject.split(":")[1]}</a>
                   </button>
                 </div>               
             </div>           
@@ -116,12 +116,12 @@ function Dashboard() {
             </ul>
           </div>
 
-          <div className="search-box">
+          {/* <div className="search-box">
             <input className="search-btn" type="text" placeholder="Rechercher"></input>
             <a className="search-btn" href="#">
               <img alt="" src="images/icone/search.png" ></img>
             </a>
-          </div>
+          </div> */}
 
           <div className="toggle">
           <i class="ouvrir"><img alt="" src="icone/menu.png"></img></i>

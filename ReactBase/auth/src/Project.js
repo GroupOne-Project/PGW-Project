@@ -3,13 +3,33 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-
 import { doc, updateDoc, deleteField } from "firebase/firestore";
+import "./Project.css";
+
+import jsPERT from "js-pert";
+import { Gantt, DefaultTheme, MaterialTheme } from "@dhtmlx/trial-react-gantt";
 
 function Project() {
 
+    // pert
+
+    // gantt
+    // const tasks = [
+    //     {
+    //       id: 'Task 1',
+    //       name: 'Redesign website',
+    //       start: '2016-12-28',
+    //       end: '2016-12-31',
+    //       progress: 20,
+    //       dependencies: 'Task 2, Task 3',
+    //       custom_class: 'bar-milestone' // optional
+    //     },        
+    // ]    
+    // const gantt = new Gantt("#gantt", tasks);
+    // console.log(gantt);
+
     // console.log(window.location.pathname);    
-    const projectId = window.location.href.split('?')[1];
+    const projectId = window.location.href.split('?')[1][0];
     console.log("ok");
     console.log(projectId);
 
@@ -118,14 +138,57 @@ function Project() {
 
         return (            
             <>
-                <button><Link to="/dashboard">Home</Link></button>
+
+        {/* ---------header-------------- */}
+        <header className="header-dash">
+          <div className="header-logo">
+            <a href="/" className="logo">
+              <img alt="" src="images/icone/logo.svg"></img>
+            </a>
+          </div>
+
+          <div className="nav">
+            <ul className="navigation">
+                <li><button><Link className="acc" to="/dashboard">Acceuil</Link></button></li>
+                <li><button>A Propos</button></li>
+                <li><button>Langue</button></li>
+                <li><button onClick={logout}>
+                  Se deconcter
+                  </button>
+                </li>
+            </ul>
+          </div>
+
+          {/* <div className="search-box">
+            <input className="search-btn" type="text" placeholder="Rechercher"></input>
+            <a className="search-btn" href="#">
+              <img alt="" src="images/icone/search.png" ></img>
+            </a>
+          </div> */}
+
+          <div className="toggle">
+          <i className="ouvrir"><img alt="" src="icone/menu.png"></img></i>
+           <i className="fermer"><img alt="" src="icone/fermer-la-croix.png"></img></i>
+          </div>
+        </header>
+        {/* ------------- */}                
 
                 <div>
-                    <button onClick={(event) => [deleteUserProject()]}>delete this project</button>
+                    <button onClick={(event) => [deleteUserProject()]}>Supprimer ce projet</button>
                 </div>
 
-                <div>Hi welcome</div>
-            </>
+        {/* ----------gantt------------ */}
+        <div>
+            <DefaultTheme />
+
+            <div class="wx-default">
+                <Gantt />
+                <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
+            </div>       
+        </div>
+        {/* ------------------------- */}
+
+        </>
         );
     }
 
