@@ -11,6 +11,10 @@ import { Gantt, DefaultTheme, MaterialTheme } from "@dhtmlx/trial-react-gantt";
 
 function Project() {
 
+    const print = async () => {      
+      window.print();
+    };
+
     // pert
 
     // gantt
@@ -174,8 +178,8 @@ function Project() {
         {/* ------------- */}                
 
                 <div className="ap-sup">
-                    <button className="ap">Aperçu</button>
-                    <button onClick={(event) => [deleteUserProject()]}>Supprimer</button>
+                    <button onClick={print} className="ap">Exporter</button>
+                    <button className="sup" onClick={(event) => [deleteUserProject()]}>Supprimer</button>
                 </div>
 
         {/* ----------gantt------------ */}

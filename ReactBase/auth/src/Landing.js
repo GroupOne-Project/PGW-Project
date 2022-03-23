@@ -13,7 +13,7 @@ function Landing() {
                     <h3>Welcome To PGW Project</h3>
                     <p>Make the PERT, GANTT and WBS of your project now</p>
                     <img src="/images/landing-header-1ac8944e97.png"></img>
-                    <a href="/Login">Get Started</a>
+                    <a href="/Login">Commencer</a>
                 </div>
             </div>
             {/* ------- */}
@@ -67,14 +67,14 @@ function Landing() {
             {/* ---------- */}
             {/* <hr></hr> */}
             <div className="available">
-                <div className="title">
+                <div className="title-landing">
                     <h3>PGW Project</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, pariatur autem. Repellendus excepturi doloribus maiores blanditiis ab consequuntur maxime explicabo delectus officiis optio non, ullam ad labore fuga libero nemo!</p>                    
                 </div>
                 <img src="images/landing-teams-a19cfef3a4.png"></img>
             </div>
             <div className="get">
-                <a href="/Login">Get Started</a>
+                <a href="/Login">Commencer</a>
             </div>
         </div>
     );
