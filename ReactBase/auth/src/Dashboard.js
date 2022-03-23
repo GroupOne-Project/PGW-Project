@@ -46,13 +46,12 @@ function Dashboard() {
 
       // retrun format of project recent
       const recentProjectss = recentProjects.map((recentProject) =>
-          <div>            
-            <div class="title">Projet recent</div>
+          <div>                        
             <div class="blocitem">
                 <div class="item1">
                   <button>
                     {/* route to project page fetching project id */}
-                    <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>
+                    <a className="recent-a" href={ `/project?${recentProject[0]}` }>{recentProject}</a>
                   </button>
                 </div>               
             </div>           
@@ -141,6 +140,7 @@ function Dashboard() {
         
         <div class="container2">
           {/* User recents Project */}
+          <div class="title">Projet recent</div>
             <div>{recentProjects}</div>          
           </div>
         </section>
