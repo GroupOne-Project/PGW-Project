@@ -5,6 +5,7 @@ import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 import "./Project.css";
+// import Ganttt from "./Ganttt";
 
 import jsPERT from "js-pert";
 import { Gantt, DefaultTheme, MaterialTheme } from "@dhtmlx/trial-react-gantt";
@@ -33,16 +34,18 @@ function Project() {
     // ]    
     // const gantt = new Gantt("#gantt", tasks);
     // console.log(gantt);
+
+
     const scales = [
       { unit: "month", step: 1, format: "MMMM yyy" },
       { unit: "day", step: 1, format: "d" },
   ];
    
   const columns = [
-      { name: "text", label: "Task name", width: "100%" },
-      { name: "start", label: "Start time", align: "center" },
-      { name: "duration", label: "Duration", width: "70px", align: "center" },
-      { name: "add-task", label: "", width: "50px", align: "center" },
+      { name: "text", label: "Tache", width: "100%" },
+      { name: "start", label: "Debut", align: "center" },
+      { name: "duration", label: "Durrée en jours", width: "70px", align: "center" },
+      // { name: "add-task", label: "", width: "50px", align: "center" },
   ];
    
   const tasks = [
@@ -50,8 +53,8 @@ function Project() {
           id: 1,
           open: true,
           start_date: "2020-11-06",
-          duration: 8,
-          text: "React Gantt Widget",
+          duration: 2,
+          text: "tache 1",
           progress: 60,
           type: "project",
       },
@@ -60,12 +63,22 @@ function Project() {
           parent: 1,
           start_date: "2020-11-06",
           duration: 4,
-          text: "Lib-Gantt",
+          text: "dodo",
           progress: 80,
       },
+      {
+        id: 3,
+        parent: 2,
+        start_date: "2020-11-06",
+        duration: 5,
+        text: "do",
+        progress: 8,
+    },
   ];
    
-  const links = [{ source: 2, target: 1, type: 0 }];
+  const links = [{ source: 3, target: 1, type: 0 }];
+
+
 
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1][0];
@@ -226,7 +239,8 @@ function Project() {
                 <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
             </div>       
         </div>
-        {/* ------------------------- */}
+        <div className="paginator"></div>
+        {/* ------------------------- */}        
 
         </>
         );
