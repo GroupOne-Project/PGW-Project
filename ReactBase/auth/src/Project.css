@@ -24,3 +24,13 @@
 .sup {
     color: red;
 }
+
+.Gantt-module_layout__3I6ye {
+    /* position: absolute; */
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    /* min-height: 100vh; */
+    border: 1Px solid red;
+}
