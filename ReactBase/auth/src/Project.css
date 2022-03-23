@@ -12,3 +12,12 @@
     margin: 10px;
     /* overflow: auto; */
 }
+
+.ap-sup {
+    display: flex;
+    justify-content: right; 
+    margin: 10px;
+}
+.ap {
+    color: green;
+}

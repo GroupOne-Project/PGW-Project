@@ -173,8 +173,9 @@ function Project() {
         </header>
         {/* ------------- */}                
 
-                <div>
-                    <button onClick={(event) => [deleteUserProject()]}>Supprimer ce projet</button>
+                <div className="ap-sup">
+                    <button className="ap">Aperçu</button>
+                    <button onClick={(event) => [deleteUserProject()]}>Supprimer</button>
                 </div>
 
         {/* ----------gantt------------ */}
@@ -183,7 +184,7 @@ function Project() {
 
             <div class="wx-default">
                 <Gantt />
-                <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
+                {/* <Gantt scales={scales} columns={columns} tasks={tasks} links={links} /> */}
             </div>       
         </div>
         {/* ------------------------- */}
