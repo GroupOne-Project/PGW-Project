@@ -46,14 +46,18 @@ function Dashboard() {
 
       // retrun format of project recent
       const recentProjectss = recentProjects.map((recentProject) =>
-          <div>
-            <button>
-
-                {/* route to project page fetching project id */}
-                <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>              
-
-            </button>
+          <div>            
+            <div class="title">Projet recent</div>
+            <div class="blocitem">
+                <div class="item1">
+                  <button>
+                    {/* route to project page fetching project id */}
+                    <a href={ `/project?${recentProject[0]}` }>{recentProject}</a>
+                  </button>
+                </div>               
+            </div>           
           </div>
+          
           );
 
         setRecentProjects(recentProjectss);
@@ -89,35 +93,77 @@ function Dashboard() {
   }, [user, loading]);
 
   return (
-    <>
-    {/* Dashboard */}
-      <div className="dashboard">
+    <>    
+      {/* Main */}
+      <div className="main">
+
+        {/* ---------header-------------- */}
+        <header className="header-dash">
+          <div className="header-logo">
+            <a href="/" className="logo">
+              <img alt="" src="images/icone/logo.svg"></img>
+            </a>
+          </div>
+
+          <div className="nav">
+            <ul className="navigation">
+                <li><button>Acceuil</button></li>
+                <li><button>A Propos</button></li>
+                <li><button>Langue</button></li>
+                <li><button onClick={logout}>
+                  Se deconcter
+                  </button>
+                </li>
+            </ul>
+          </div>
+
+          <div className="search-box">
+            <input className="search-btn" type="text" placeholder="Rechercher"></input>
+            <a className="search-btn" href="#">
+              <img alt="" src="images/icone/search.png" ></img>
+            </a>
+          </div>
+
+          <div className="toggle">
+          <i class="ouvrir"><img alt="" src="icone/menu.png"></img></i>
+           <i class="fermer"><img alt="" src="icone/fermer-la-croix.png"></img></i>
+          </div>
+        </header>
+        {/* ------------- */}
+
+        {/* -------------main------------- */}
+        <section className="home">
+        <div class="container">
+            <div class="item-dash"><button>
+          <Link to="/create_project">CREER UN PROJET</Link>
+        </button></div>            
+        </div>
+        
+        <div class="container2">
+          {/* User recents Project */}
+            <div>{recentProjects}</div>          
+          </div>
+        </section>
+        {/* --------------main------------- */}
+
+      </div>      
+
+      {/* Dashboard */}
+      {/* <div className="dashboard">
         <div className="dashboard__container">
           <div>Welcome</div>
           Logged in as
-          <div>{name}</div>
-          {/* <div>{user?.email.split("@")[0]}</div> */}
+          <div>{name}</div>    
           <div>With email:</div>
           <div>{user?.email}</div>
           <button className="dashboard__btn" onClick={logout}>
             Logout
           </button>
         </div>
-        {/* <div>
+        <div>
           <button onClick={deleteUser}>Delete Account</button>
-        </div> */}
-      </div>
-      
-      {/* Main */}
-      <div className="main">
-        <button>
-          <Link to="/create_project">Create Project</Link>
-        </button>
-      </div>
-
-      {/* User recents Project */}
-      <div>{recentProjects}</div>
-
+        </div>
+      </div> */}    
     </>
 
   );
