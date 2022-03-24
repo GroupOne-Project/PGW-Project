@@ -13,6 +13,16 @@ import { async } from "@firebase/util";
 
 function Project() {
 
+      // les inputs de task
+      const [taskName, setTaskName] = useState("");
+      const [duration, setTaskDuration] = useState("");
+      const [start, setTaskStart] = useState("");
+      const starts = "2022-03-12";
+      // setTaskStart(starts);
+      const [end, setTaskEnd] = useState("");
+      const [predecessors, setTaskPrec] = useState("");
+      const [progression, setTaskProgression] = useState("");    
+
     const print = async () => {     
       const content = document.getElementsByClassName('wx-default');
       console.log(content);
@@ -45,54 +55,59 @@ function Project() {
   const columns = [
       { name: "text", label: "Tache", width: "100%" },
       { name: "start", label: "Debut", align: "center" },
-      { name: "duration", label: "Durrée en jours", width: "70px", align: "center" },
+      { name: "duration", label: "Durrée", width: "70px", align: "center" },
       // { name: "add-task", label: "", width: "50px", align: "center" },
   ];
-   
+
   const tasks = [
+    {
+        id: 1,
+        open: true,
+        start_date: "2022-03-09",
+        duration: 2,
+        text: "tache 1",
+        progress: 60,
+        type: "project",
+    },
+    {
+        id: 2,
+        // open: true,
+        parent: 1,
+        start_date: "2022-03-10",
+        duration: 4,
+        text: "tache 2",
+        progress: 10,
+    },
+  //   {
+  //     id: 3,
+  //     parent: 2,
+  //     start_date: "2022-03-09",
+  //     duration: 5,
+  //     text: "do",
+  //     progress: 80,
+  // },
+  
+];
+  
+  const trueTasks = [
       {
           id: 1,
-          open: true,
-          start_date: "2022-03-06",
-          duration: 2,
-          text: "tache 1",
-          progress: 60,
+          // open: true,
+          start_date: starts,
+          duration: duration,
+          text: taskName,
+          progress: progression,
           type: "project",
-      },
-      {
-          id: 2,
-          open: true,
-          parent: 1,
-          start_date: "2022-03-08",
-          duration: 4,
-          text: "dodo",
-          progress: 80,
-      },
-      {
-        id: 3,
-        parent: 2,
-        start_date: "2022-03-09",
-        duration: 5,
-        text: "do",
-        progress: 8,
-    },
+      },      
+    
   ];
    
-  const links = [{ source: 3, target: 1, type: 0 }];
-
-
-    const run = async () => {
-      console.log(task);
-      alert(task);
-    }
+  const links = [{ source: 3, target: 1, type: 0 }];    
 
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1][0];
     console.log("ok");
     console.log(projectId);
-
-    // les inputs de task
-    const [task, setTaskName] = useState("");
     
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();        
@@ -102,6 +117,8 @@ function Project() {
     
      // Fetch userName using user?.uid
      const fetchUserName = async () => {
+      setTaskStart(starts);
+      alert(start);
         try {        
           const q = query(collection(db, "users"), where("uid", "==", user?.uid));
           const doc = await getDocs(q);
@@ -114,7 +131,12 @@ function Project() {
         }
       }; 
 
-
+      const run = async () => {   
+        alert(start)  ;
+        console.log(taskName);
+        // alert(start);
+      }
+      
     const deleteUserProject = async () => {
         // delete user project by id
         const projectToDeleteId = parseInt(projectId);        
@@ -249,17 +271,27 @@ function Project() {
           
           <tr className="tr" >  
             <th className="th" scope="col"> Nom de la tache </th>  
-            <th className="th" scope="col"> Duree </th>  
+            <th className="th" scope="col"> Duree / jours</th>  
             <th className="th" scope="col"> Date debut </th>  
             <th className="th" scope="col"> Date fin </th> 
             <th className="th" scope="col"> Predecesseur </th>  
+            <th className="th" scope="col"> Progression </th>  
       
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={1} onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskStart(e.target.value)} type="date"></input></td>
+              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
           <tr className="tr" >  
@@ -268,12 +300,6 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="number"></input></td>
-          </tr>  
-          <tr className="tr" >  
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
           <tr className="tr" >  
@@ -281,6 +307,71 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr> 
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr> 
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>                               
         </tbody>  
@@ -289,12 +380,12 @@ function Project() {
   </div>
 </div>
 
-  <div className="run"><button onClick={run} className="run-btn">Run</button></div>
+  <div className="run"><button onClick={run} className="run-btn">Generer le Gantt</button></div>
             <DefaultTheme />
 
             <div class="wx-default">
                 {/* <Gantt /> */}                
-                <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
+                <Gantt scales={scales} columns={columns} tasks={trueTasks} links={links} />
             </div>       
         </div>
         <div className="paginator"></div>
