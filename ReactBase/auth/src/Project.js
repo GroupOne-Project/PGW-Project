@@ -9,6 +9,7 @@ import "./Project.css";
 
 import jsPERT from "js-pert";
 import { Gantt, DefaultTheme, MaterialTheme } from "@dhtmlx/trial-react-gantt";
+import { async } from "@firebase/util";
 
 function Project() {
 
@@ -52,7 +53,7 @@ function Project() {
       {
           id: 1,
           open: true,
-          start_date: "2020-11-06",
+          start_date: "2022-03-06",
           duration: 2,
           text: "tache 1",
           progress: 60,
@@ -60,8 +61,9 @@ function Project() {
       },
       {
           id: 2,
+          open: true,
           parent: 1,
-          start_date: "2020-11-06",
+          start_date: "2022-03-08",
           duration: 4,
           text: "dodo",
           progress: 80,
@@ -69,7 +71,7 @@ function Project() {
       {
         id: 3,
         parent: 2,
-        start_date: "2020-11-06",
+        start_date: "2022-03-09",
         duration: 5,
         text: "do",
         progress: 8,
@@ -79,12 +81,19 @@ function Project() {
   const links = [{ source: 3, target: 1, type: 0 }];
 
 
+    const run = async () => {
+      console.log(task);
+      alert(task);
+    }
 
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1][0];
     console.log("ok");
     console.log(projectId);
 
+    // les inputs de task
+    const [task, setTaskName] = useState("");
+    
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();        
     const [name, setName] = useState("");
@@ -232,10 +241,59 @@ function Project() {
 
         {/* ----------gantt------------ */}
         <div>
+        <div className="input-taches">
+                <div class="container">
+    <div class="tableau">
+      <table summary="Editable table with datasets ordered in columns" class="table-fill">  
+        <tbody className="tbody">
+          
+          <tr className="tr" >  
+            <th className="th" scope="col"> Nom de la tache </th>  
+            <th className="th" scope="col"> Duree </th>  
+            <th className="th" scope="col"> Date debut </th>  
+            <th className="th" scope="col"> Date fin </th> 
+            <th className="th" scope="col"> Predecesseur </th>  
+      
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>                               
+        </tbody>  
+      </table> 
+    </div>
+  </div>
+</div>
+
+  <div className="run"><button onClick={run} className="run-btn">Run</button></div>
             <DefaultTheme />
 
             <div class="wx-default">
-                {/* <Gantt /> */}
+                {/* <Gantt /> */}                
                 <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
             </div>       
         </div>
