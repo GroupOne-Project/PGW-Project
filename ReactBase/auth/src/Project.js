@@ -16,10 +16,10 @@ function Project() {
       // les inputs de task
       const [taskName, setTaskName] = useState("");
       const [duration, setTaskDuration] = useState("");
-      const [start, setTaskStart] = useState("2022-03-02");
+      const [start, setTaskStart] = useState("2011-01-11");
       var starts = "2022-03-12";
       // setTaskStart(starts);
-      const [end, setTaskEnd] = useState("");
+      const [end, setTaskEnd] = useState("2011-01-11");
       const [predecessors, setTaskPrec] = useState("");
       const [progression, setTaskProgression] = useState("");    
 
@@ -54,7 +54,7 @@ function Project() {
    
   const columns = [
       { name: "text", label: "Tache", width: "100%" },
-      { name: "start", label: "Debut", align: "center" },
+      { name: "start", label: "Debut", align: "center" },   
       { name: "duration", label: "Durrée", width: "70px", align: "center" },
       // { name: "add-task", label: "", width: "50px", align: "center" },
   ];
@@ -100,19 +100,20 @@ function Project() {
           type: "project",
       },      
     
-  ];
+  ];  
    
-  const links = [{ source: 3, target: 1, type: 0 }];    
+    const links = [{ source: 3, target: 1, type: 0 }];    
 
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1][0];
-    console.log("ok");
+    // console.log("ok");
     console.log(projectId);
     
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();        
     const [name, setName] = useState("");
     const [projects, setProjects] = useState("");
+    const [projectsTask, setProjectsTask] = useState("");
     const [projectsAfterDel, setProjectsAfterDel] = useState("");
     
      // Fetch userName using user?.uid
@@ -131,7 +132,7 @@ function Project() {
 
       const run = async () => {   
         const star = document.getElementById("star").value;
-        alert(star)  ;
+        alert("Le Gantt se genere automatiquement remplissez juste le tableau");
         console.log(taskName);
         // alert(start);
       }
@@ -187,19 +188,37 @@ function Project() {
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
             setProjects(data.projects);
+            setProjectsTask(data.projects.task);
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
         }
     }; 
-    console.log(projects[projectId]);
+    // console.log(projects[projectId]);
+
+    // fetch true task
+    console.log(projectsTask);
+    // const trueTasks = projectsTask;
+
+    // update on firebase
+    const updateProjectstask = async () => {
+      projects["task"] = trueTasks;
+      console.log(projects);
+      const userDocByName = doc(db, "users", name);
+      const projectsMap = Object.entries(projects);
+      await updateDoc(userDocByName, {
+        projects: projects
+      });
+      alert("Sauvegarde termine");
+    };
 
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
-    
+
         fetchUserProject();
         fetchUserName();
+        // updateProjectstask();
     }, [user, loading]);
     
 
@@ -216,7 +235,7 @@ function Project() {
             </div>
         );
     } else {
-        console.log("yes");
+        // console.log("yes");
 
         return (            
             <>
@@ -278,9 +297,9 @@ function Project() {
       
           </tr>  
           <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
               <td className="td"><input onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-03-02" id="star" type="date"></input></td>
+              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
               <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
               <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
@@ -379,7 +398,8 @@ function Project() {
   </div>
 </div>
 
-  <div className="run"><button onClick={run} className="run-btn">Generer le Gantt</button></div>
+  <div className="run"><button onClick={run} className="run-btn">Gantt ...</button></div>
+  <div className="run"><button onClick={updateProjectstask} className="run-btn">Enregistrer</button></div>
             <DefaultTheme />
 
             <div class="wx-default">
