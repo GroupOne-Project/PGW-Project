@@ -16,8 +16,8 @@ function Project() {
       // les inputs de task
       const [taskName, setTaskName] = useState("");
       const [duration, setTaskDuration] = useState("");
-      const [start, setTaskStart] = useState("");
-      const starts = "2022-03-12";
+      const [start, setTaskStart] = useState("2022-03-02");
+      var starts = "2022-03-12";
       // setTaskStart(starts);
       const [end, setTaskEnd] = useState("");
       const [predecessors, setTaskPrec] = useState("");
@@ -93,7 +93,7 @@ function Project() {
       {
           id: 1,
           // open: true,
-          start_date: starts,
+          start_date: start,
           duration: duration,
           text: taskName,
           progress: progression,
@@ -116,9 +116,7 @@ function Project() {
     const [projectsAfterDel, setProjectsAfterDel] = useState("");
     
      // Fetch userName using user?.uid
-     const fetchUserName = async () => {
-      setTaskStart(starts);
-      alert(start);
+     const fetchUserName = async () => {    
         try {        
           const q = query(collection(db, "users"), where("uid", "==", user?.uid));
           const doc = await getDocs(q);
@@ -132,7 +130,8 @@ function Project() {
       }; 
 
       const run = async () => {   
-        alert(start)  ;
+        const star = document.getElementById("star").value;
+        alert(star)  ;
         console.log(taskName);
         // alert(start);
       }
@@ -280,8 +279,8 @@ function Project() {
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
-              <td className="td"><input defaultValue={1} onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
-              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskStart(e.target.value)} type="date"></input></td>
+              <td className="td"><input onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-03-02" id="star" type="date"></input></td>
               <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
               <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
