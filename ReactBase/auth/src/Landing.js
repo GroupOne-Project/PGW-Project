@@ -11,7 +11,7 @@ function Landing() {
             <div className="header">
                 <div className="content">
                     <h3>Welcome To PGW Project</h3>
-                    <p>Make the PERT, GANTT and WBS of your project now</p>
+                    <p>Conçevez le WBS, PERT et le GANTT de votre projet meintenant</p>
                     <img src="/images/landing-header-1ac8944e97.png"></img>
                     <a href="/Login">Commencer</a>
                 </div>

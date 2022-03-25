@@ -297,7 +297,8 @@ function Project() {
       
           </tr>  
           <tr className="tr" >  
-              <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
               <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
               <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td>

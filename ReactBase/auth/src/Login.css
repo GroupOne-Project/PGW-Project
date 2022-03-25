@@ -45,6 +45,8 @@
 }
 
 body{
+  background-image: url("https://cdn.pixabay.com/photo/2020/12/14/10/40/leaves-5830590_960_720.jpg");
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   justify-content:center;
