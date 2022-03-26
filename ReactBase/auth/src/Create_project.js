@@ -88,7 +88,7 @@ const Create_project = () => {
             const newProjects = {
                 'name': projectName,
                 'responsable': responsable,
-                'date-start': date_start,
+                'date_start': date_start,
                 'date_end': date_end,
                 'description': description
             };

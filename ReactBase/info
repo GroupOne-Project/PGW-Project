@@ -2,3 +2,7 @@ ReactBase >
 . React Firebase Authentication - Ok
 . Test CRUD with ReactJs and Firebase - OK with 55%
 
+> 
+    . Utilisation de deux bouton a la create project pour resoudre le probleme
+      " les boutons les link, les a en react ne peuvent retourner a la fois deux fonction dans le 'onClick' "
+      

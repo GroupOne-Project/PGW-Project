@@ -21,8 +21,13 @@
 
 .ap-sup {
     display: flex;
-    justify-content: right; 
+    justify-content: space-around; 
+    align-items: center;
     margin: 10px;
+}
+.run button{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .ap {
     color: green;
@@ -49,7 +54,7 @@ element.style {
     box-sizing: border-box;
     /* border-right: 1px solid var(--wx-border-color); */
     overflow: hidden;
-    margin-left: 0%;
+    margin-left: -6%;
     min-height: 400px;
     background-color: white;    
     border: 2px solid rgb(0, 128, 255);
@@ -74,13 +79,13 @@ element.style {
     margin-top: 20px;      
 }
 .run  {
-    margin-top: 20px;
+    /* margin-top: 20px;
     margin-bottom: -20px;
     display: flex;
-    justify-content: center;
+    justify-content: center; */
 }
 .run-btn {
-    color: darkgreen;
+    color: darkblue;
 }
 
 /* wbs from king */
@@ -131,4 +136,21 @@ element.style {
 .tbody {
       width: 100%;
   }
-    
+
+
+/*  */
+
+.gantt-title, .wbs-title {
+    color: white;
+    margin-bottom: -10px;
+}
+.gantt-title {
+    margin-top: 13px;
+    margin-bottom: 5px;
+}
+
+.project-fetch {
+    display: grid;
+    padding: 10px;
+    /* margin-right: 20%; */
+}

@@ -189,6 +189,7 @@ function Project() {
             const data = doc.docs[0].data();            
             setProjects(data.projects);
             setProjectsTask(data.projects.task);
+            // console.log(projects[projectId].name);
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -272,15 +273,25 @@ function Project() {
            <i className="fermer"><img alt="" src="icone/fermer-la-croix.png"></img></i>
           </div>
         </header>
-        {/* ------------- */}                
+        {/* ------------- */}                      
 
                 <div className="ap-sup">
-                    <button onClick={print} className="ap">Exporter</button>
-                    <button className="sup" onClick={(event) => [deleteUserProject()]}>Supprimer</button>
+                    <div className="project-fetch">
+                      <div className="project-name">Projet: {projects[projectId].name}</div>          
+                      <div className="project-resp">Responsable: {projects[projectId].responsable}</div>
+                      <div className="project-date-start">Debut du projet: {projects[projectId].date_start}</div>
+                      <div className="project-date-start">Debut du projet: {projects[projectId].date_end}</div>          
+                    </div>  
+                    <div className="run">
+                      <button onClick={updateProjectstask} className="run-btn">Enregistrer</button>
+                      <button onClick={print} className="ap">Exporter</button>
+                      <button className="sup" onClick={(event) => [deleteUserProject()]}>Supprimer</button>
+                    </div>                    
                 </div>
 
         {/* ----------gantt------------ */}
         <div>
+          <div className="wbs-title">WBS</div>
         <div className="input-taches">
                 <div class="container">
     <div class="tableau">
@@ -399,11 +410,11 @@ function Project() {
   </div>
 </div>
 
-  <div className="run"><button onClick={run} className="run-btn">Gantt ...</button></div>
-  <div className="run"><button onClick={updateProjectstask} className="run-btn">Enregistrer</button></div>
+  {/* <div className="run"><button onClick={run} className="run-btn">Gantt ...</button></div> */} 
             <DefaultTheme />
 
             <div class="wx-default">
+                <div className="gantt-title">GANTT</div>
                 {/* <Gantt /> */}                
                 <Gantt scales={scales} columns={columns} tasks={trueTasks} links={links} />
             </div>       

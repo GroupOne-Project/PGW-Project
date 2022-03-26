@@ -94,7 +94,7 @@ function Dashboard() {
   return (
     <>    
       {/* Main */}
-      <div className="main">
+      <div className="main-dash">
 
         {/* ---------header-------------- */}
         <header className="header-dash">
@@ -131,7 +131,7 @@ function Dashboard() {
         {/* ------------- */}
 
         {/* -------------main------------- */}
-        <section className="home">
+        <section className="home-dash">
         <div class="container">
             <div class="item-dash"><button>
           <Link to="/create_project">CREER UN PROJET</Link>
