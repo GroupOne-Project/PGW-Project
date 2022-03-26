@@ -28,7 +28,7 @@ function Project() {
       const [start1, setTaskStart1] = useState("2011-01-11");
       // setTaskStart(starts);
       const [end1, setTaskEnd1] = useState("2011-01-11");
-      const [predecessors1, setTaskPrec1] = useState("");
+      const [predecessors1, setTaskPrec1] = useState(1);
       const [progression1, setTaskProgression1] = useState(""); 
       // -----------------------------------------------------------
       const [taskName2, setTaskName2] = useState("");
@@ -36,7 +36,7 @@ function Project() {
       const [start2, setTaskStart2] = useState("2011-01-11");
       // setTaskStart(starts);
       const [end2, setTaskEnd2] = useState("2011-01-11");
-      const [predecessors2, setTaskPrec2] = useState("");
+      const [predecessors2, setTaskPrec2] = useState(2);
       const [progression2, setTaskProgression2] = useState(""); 
       // -----------------------------------------------------------
       const [taskName3, setTaskName3] = useState("");
@@ -44,7 +44,7 @@ function Project() {
       const [start3, setTaskStart3] = useState("2011-01-11");
       // setTaskStart(starts);
       const [end3, setTaskEnd3] = useState("2011-01-11");
-      const [predecessors3, setTaskPrec3] = useState("");
+      const [predecessors3, setTaskPrec3] = useState(3);
       const [progression3, setTaskProgression3] = useState(""); 
 
     const print = async () => {     
@@ -125,38 +125,38 @@ function Project() {
       }, 
       {
         id: 2,
-        open: true,
+        // open: true,
         start_date: start1,
         duration: duration1,
         text: taskName1,
         progress: progression1,
-        parent: predecessors1,
-        type: "project",
+        // parent: predecessors1,
+        source: predecessors1,
       },
       {
         id: 3,
-        open: true,
+        // open: true,
         start_date: start2,
         duration: duration2,
         text: taskName2,
         progress: progression2,
-        parent: predecessors2,
-        type: "project",
+        // parent: predecessors2,
+        source: predecessors2,
       },  
       {
         id: 4,
-        open: true,
+        // open: true,
         start_date: start3,
         duration: duration3,
         text: taskName3,
         progress: progression3,
-        parent: predecessors3,
-        type: "project",
+        // parent: predecessors3, 
+        source: predecessors3,       
       },      
     
   ];  
    
-    const links = [{ source: 3, target: 1, type: 0 }];    
+    const links = [{ target: 1, type: 0 }];    
 
     // console.log(window.location.pathname);    
     const projectId = window.location.href.split('?')[1][0];

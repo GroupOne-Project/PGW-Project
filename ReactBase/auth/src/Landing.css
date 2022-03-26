@@ -58,7 +58,8 @@ button {
 }
 
 .main {
-    background-color: white;
+    /* background-color: white; */
+    color: white;
     display: block;
     margin: 10px;
     margin-top: 10px;
@@ -126,6 +127,7 @@ button {
     align-items: center;
 }
 .available .title-landing {
+    /* color: white; */
     color: white;
     margin: 10px;
     max-width: 400px;
@@ -153,7 +155,7 @@ h3 {
     padding: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(247, 242, 242);
+    /* background-color: rgb(247, 242, 242); */
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -163,6 +165,7 @@ h3 {
     justify-content: center;
 }
 .team h3 {
+    color: white;
     display: flex;
     justify-content: center;
 }
@@ -189,6 +192,7 @@ h3 {
     justify-content: center;
 }
 .item p {
+    color: white;
     margin-left: 20%;
     margin-right: 20%;
     padding: 0;
