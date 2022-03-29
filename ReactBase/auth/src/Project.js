@@ -305,9 +305,9 @@ function Project() {
 
           <div className="nav">
             <ul className="navigation">
-                <li><button><Link className="acc" to="/dashboard">Acceuil</Link></button></li>
-                <li><button>A Propos</button></li>
-                <li><button>Langue</button></li>
+                <li><button><a href="/dashboard">Acceuil</a></button></li>
+                {/* <li><button>A Propos</button></li> */}
+                {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
                   Se deconcter
                   </button>

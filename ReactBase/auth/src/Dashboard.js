@@ -106,9 +106,9 @@ function Dashboard() {
 
           <div className="nav">
             <ul className="navigation">
-                <li><button>Acceuil</button></li>
-                <li><button>A Propos</button></li>
-                <li><button>Langue</button></li>
+            <li><button><a href="/dashboard">Acceuil</a></button></li>
+                {/* <li><button>A Propos</button></li> */}
+                {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
                   Se deconcter
                   </button>
