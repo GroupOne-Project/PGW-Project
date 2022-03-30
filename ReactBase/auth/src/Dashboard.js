@@ -65,7 +65,7 @@ function Dashboard() {
 
     } catch (err) {
       console.error(err);
-      alert("An error occured while fetching user data");
+      alert("Problème de connexion");
     }
   }; 
 
@@ -106,7 +106,7 @@ function Dashboard() {
 
           <div className="nav">
             <ul className="navigation">
-            <li><button><a href="/dashboard">Acceuil</a></button></li>
+            <li><button><a className="acceuil-dash" href="/dashboard">Acceuil</a></button></li>
                 {/* <li><button>A Propos</button></li> */}
                 {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>

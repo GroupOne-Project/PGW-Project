@@ -16,34 +16,34 @@ function Project() {
       // les inputs de task
       const [taskName, setTaskName] = useState("");
       const [duration, setTaskDuration] = useState("");
-      const [start, setTaskStart] = useState("2011-01-11");
+      const [start, setTaskStart] = useState("2022-04-11");
       var starts = "2022-03-12";
       // setTaskStart(starts);
-      const [end, setTaskEnd] = useState("2011-01-11");
+      const [end, setTaskEnd] = useState("2022-04-17");
       const [predecessors, setTaskPrec] = useState("");
       const [progression, setTaskProgression] = useState(""); 
       // -----------------------------------------------------------
       const [taskName1, setTaskName1] = useState("");
       const [duration1, setTaskDuration1] = useState("");
-      const [start1, setTaskStart1] = useState("2011-01-11");
+      const [start1, setTaskStart1] = useState("2022-04-11");
       // setTaskStart(starts);
-      const [end1, setTaskEnd1] = useState("2011-01-11");
+      const [end1, setTaskEnd1] = useState("2022-04-17");
       const [predecessors1, setTaskPrec1] = useState(1);
       const [progression1, setTaskProgression1] = useState(""); 
       // -----------------------------------------------------------
       const [taskName2, setTaskName2] = useState("");
       const [duration2, setTaskDuration2] = useState("");
-      const [start2, setTaskStart2] = useState("2011-01-11");
+      const [start2, setTaskStart2] = useState("2022-04-11");
       // setTaskStart(starts);
-      const [end2, setTaskEnd2] = useState("2011-01-11");
+      const [end2, setTaskEnd2] = useState("2022-04-17");
       const [predecessors2, setTaskPrec2] = useState(2);
       const [progression2, setTaskProgression2] = useState(""); 
       // -----------------------------------------------------------
       const [taskName3, setTaskName3] = useState("");
       const [duration3, setTaskDuration3] = useState("");
-      const [start3, setTaskStart3] = useState("2011-01-11");
+      const [start3, setTaskStart3] = useState("2022-04-11");
       // setTaskStart(starts);
-      const [end3, setTaskEnd3] = useState("2011-01-11");
+      const [end3, setTaskEnd3] = useState("2022-04-17");
       const [predecessors3, setTaskPrec3] = useState(3);
       const [progression3, setTaskProgression3] = useState(""); 
 
@@ -155,6 +155,8 @@ function Project() {
       },      
     
   ];  
+
+  console.log(trueTasks);
    
     const links = [{ target: 1, type: 0 }];    
 
@@ -257,8 +259,13 @@ function Project() {
 
     // update on firebase
     const updateProjectstask = async () => {
-      projects["task"] = trueTasks;
+      console.log(projectId);
+      const projectIdMap = projects[projectId];      
+      projectIdMap["task"] = trueTasks;
+      console.log(projectIdMap);
+      projects[projectId] = projectIdMap;
       console.log(projects);
+
       const userDocByName = doc(db, "users", name);
       const projectsMap = Object.entries(projects);
       await updateDoc(userDocByName, {
@@ -337,8 +344,8 @@ function Project() {
                       <div className="project-date-start"><li>Date de fin: {projects[projectId].date_end}</li></div>           */}
                     </div>  
                     <div className="run">
-                      <button className="run-btn">Enregistrer</button>
-                      {/* <button onClick={updateProjectstask} className="run-btn">Enregistrer</button> */}
+                      {/* <button className="run-btn">Enregistrer</button> */}
+                      <button onClick={updateProjectstask} className="run-btn">Enregistrer</button>
                       <button onClick={print} className="ap">Exporter</button>
                       <button className="sup" onClick={(event) => [deleteUserProject()]}>Supprimer</button>
                     </div>                    
@@ -355,54 +362,62 @@ function Project() {
           
           <tr className="tr" >  
             <th className="th" scope="col"> Nom de la tache </th>  
-            <th className="th" scope="col"> Duree / jours</th>  
             <th className="th" scope="col"> Date debut </th>  
-            <th className="th" scope="col"> Date fin </th> 
-            <th className="th" scope="col"> Predecesseur </th>  
+            <th className="th" scope="col"> Duree / jours</th>  
+            {/* <th className="th" scope="col"> Date fin </th>  */}
             <th className="th" scope="col"> Progression </th>  
+            <th className="th" scope="col"> Predecesseur </th>  
       
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
-              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName1(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskStart1(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskDuration1(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskStart1(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
-              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec1(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression1(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec1(e.target.value)} type="number"></input></td>
           </tr>   
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName2(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskStart2(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskDuration2(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskStart2(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
-              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd2(e.target.value)} type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec2(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd2(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression2(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec2(e.target.value)} type="number"></input></td>
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName3(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskStart3(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
               <td className="td"><input onChange={(e) => setTaskDuration3(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskStart3(e.target.value)} defaultValue="2011-01-11" id="star" type="date"></input></td>
-              <td className="td"><input defaultValue="2022-01-11" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec3(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression3(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec3(e.target.value)} type="number"></input></td>
           </tr> 
           <tr className="tr" >  
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
+              <td className="td"><input type="number"></input></td>
+              <td className="td"><input type="number"></input></td>
+          </tr>  
+          <tr className="tr" >  
+          <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
+              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
@@ -410,7 +425,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
@@ -418,15 +433,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="number"></input></td>
-              <td className="td"><input type="number"></input></td>
-          </tr>  
-          <tr className="tr" >  
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr> 
@@ -434,7 +441,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
@@ -442,7 +449,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
@@ -450,7 +457,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>  
@@ -458,7 +465,7 @@ function Project() {
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
               <td className="td"><input type="text"></input></td>
-              <td className="td"><input type="text"></input></td>
+              {/* <td className="td"><input type="text"></input></td> */}
               <td className="td"><input type="number"></input></td>
               <td className="td"><input type="number"></input></td>
           </tr>                               

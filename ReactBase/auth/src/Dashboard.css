@@ -87,6 +87,15 @@
   padding-bottom: 0.7%;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+.acceuil-dash {
+  text-decoration: none;
+  color: black;
+}
+
 .logo img {
   /* position: relative; */
   width: 35px;
@@ -237,7 +246,7 @@
   text-decoration: none;
 }
 .item-dash a:hover {
-  color: rgb(0, 128, 255);
+  /* color: rgb(0, 128, 255); */
 }
 
 .item-dash:hover{
