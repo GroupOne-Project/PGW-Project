@@ -16,6 +16,7 @@ import { async } from "@firebase/util";
 
 
 function initDiagram() {
+  
     // colors used, named for easier identification
     var blue = "#0288D1";
     var pink = "#B71C1C";
@@ -102,30 +103,8 @@ function initDiagram() {
             { toArrow: "Triangle", stroke: null, scale: 1.5 },
             new go.Binding("fill", "", linkColorConverter))
         );
-    const nodeDataArray=[
-          { key: 1, text: "Start", length: 0, earlyStart: 0, lateFinish: 0, critical: true },
-          { key: 2, text: "a", length: 4, earlyStart: 0, lateFinish: 4, critical: true },
-          { key: 3, text: "b", length: 5.33, earlyStart: 0, lateFinish: 9.17, critical: false },
-          { key: 4, text: "c", length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: true },
-          { key: 5, text: "d", length: 6.33, earlyStart: 4, lateFinish: 15.01, critical: false },
-          { key: 6, text: "e", length: 5.17, earlyStart: 9.17, lateFinish: 14.34, critical: true },
-          { key: 7, text: "f", length: 4.5, earlyStart: 10.33, lateFinish: 19.51, critical: false },
-          { key: 8, text: "g", length: 5.17, earlyStart: 14.34, lateFinish: 19.51, critical: true },
-          { key: 9, text: "Finish", length: 0, earlyStart: 19.51, lateFinish: 19.51, critical: true }
-        ];
-    const linkDataArray=[
-          { from: 1, to: 2 },
-          { from: 1, to: 3 },
-          { from: 2, to: 4 },
-          { from: 2, to: 5 },
-          { from: 3, to: 6 },
-          { from: 4, to: 6 },
-          { from: 5, to: 7 },
-          { from: 6, to: 8 },
-          { from: 7, to: 9 },
-          { from: 8, to: 9 }
-        ];
-    diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+   
+    // diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
     diagram.add(
       $(go.Node, "Auto",
         $(go.Shape, "Rectangle",  // the border
@@ -135,25 +114,25 @@ function initDiagram() {
           $(go.RowColumnDefinition, { column: 2, separatorStroke: "black" }),
           $(go.RowColumnDefinition, { row: 1, separatorStroke: "black", background: bluefill, coversSeparators: true }),
           $(go.RowColumnDefinition, { row: 2, separatorStroke: "black" }),
-          $(go.TextBlock, "Early Start",
-            { row: 0, column: 0, margin: 5, textAlign: "center" }),
-          $(go.TextBlock, "Length",
-            { row: 0, column: 1, margin: 5, textAlign: "center" }),
-          $(go.TextBlock, "Early Finish",
-            { row: 0, column: 2, margin: 5, textAlign: "center" }),
+          // $(go.TextBlock, "Early Start",
+          //   { row: 0, column: 0, margin: 5, textAlign: "center" }),
+          // $(go.TextBlock, "Length",
+          //   { row: 0, column: 1, margin: 5, textAlign: "center" }),
+          // $(go.TextBlock, "Early Finish",
+          //   { row: 0, column: 2, margin: 5, textAlign: "center" }),
 
-          $(go.TextBlock, "Activity Name",
-            {
-              row: 1, column: 0, columnSpan: 3, margin: 5,
-              textAlign: "center", font: "bold 14px sans-serif"
-            }),
+          // $(go.TextBlock, "Activity Name",
+          //   {
+          //     row: 1, column: 0, columnSpan: 3, margin: 5,
+          //     textAlign: "center", font: "bold 14px sans-serif"
+          //   }),
 
-          $(go.TextBlock, "Late Start",
-            { row: 2, column: 0, margin: 5, textAlign: "center" }),
-          $(go.TextBlock, "Slack",
-            { row: 2, column: 1, margin: 5, textAlign: "center" }),
-          $(go.TextBlock, "Late Finish",
-            { row: 2, column: 2, margin: 5, textAlign: "center" })
+          // $(go.TextBlock, "Late Start",
+          //   { row: 2, column: 0, margin: 5, textAlign: "center" }),
+          // $(go.TextBlock, "Slack",
+          //   { row: 2, column: 1, margin: 5, textAlign: "center" }),
+          // $(go.TextBlock, "Late Finish",
+          //   { row: 2, column: 2, margin: 5, textAlign: "center" })
         )  // end Table Panel
       ));
   
@@ -206,6 +185,14 @@ function Project() {
       const [end3, setTaskEnd3] = useState("2022-04-17");
       const [predecessors3, setTaskPrec3] = useState(3);
       const [progression3, setTaskProgression3] = useState(""); 
+      // -----------------------------------------------------------
+      const [taskName4, setTaskName4] = useState("");
+      const [duration4, setTaskDuration4] = useState("");
+      const [start4, setTaskStart4] = useState("2022-04-11");
+      // setTaskStart(starts);
+      const [end4, setTaskEnd4] = useState("2022-04-17");
+      const [predecessors4, setTaskPrec4] = useState(3);
+      const [progression4, setTaskProgression4] = useState(""); 
 
     const print = async () => {     
       const content = document.getElementsByClassName('wx-default');
@@ -312,6 +299,16 @@ function Project() {
         progress: progression3,
         // parent: predecessors3, 
         source: predecessors3,       
+      },    
+      {
+        id: 5,
+        // open: true,
+        start_date: start4,
+        duration: duration4,
+        text: taskName4,
+        progress: progression4,
+        // parent: predecessors3, 
+        source: predecessors4,       
       },      
     
   ];  
@@ -564,6 +561,15 @@ function Project() {
               {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression3(e.target.value)} type="number"></input></td>
               <td className="td"><input onChange={(e) => setTaskPrec3(e.target.value)} type="number"></input></td>
+          </tr>   
+          <tr className="tr" >  
+              <td className="td"><input onChange={(e) => setTaskName4(e.target.value)} type="text"></input></td>
+              {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskStart4(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
+              <td className="td"><input onChange={(e) => setTaskDuration4(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td> */}
+              <td className="td"><input onChange={(e) => setTaskProgression4(e.target.value)} type="number"></input></td>
+              <td className="td"><input onChange={(e) => setTaskPrec4(e.target.value)} type="number"></input></td>
           </tr>                          
         </tbody>  
       </table> 
@@ -589,6 +595,22 @@ function Project() {
       <ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'        
+
+        nodeDataArray={[
+          { key: 1, text: taskName, length: 0, earlyStart: 0, lateFinish: 0, critical: true },
+          { key: 2, text: taskName1, length: 4, earlyStart: 0, lateFinish: 4, critical: true },
+          { key: 3, text: taskName2, length: 5.33, earlyStart: 0, lateFinish: 9.17, critical: false },
+          { key: 4, text: taskName3, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: true },
+          { key: 5, text: taskName4, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: false },
+        ]}
+        linkDataArray={[
+          { from: 0, to: 1 },
+          { from: predecessors1, to: 2 },
+          { from: predecessors2, to: 3 },
+          { from: predecessors3, to: 4 },
+          { from: predecessors4, to: 5 }
+        ]}
+        
         
         onModelChange={handleModelChange}
       />      
