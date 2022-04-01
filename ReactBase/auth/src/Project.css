@@ -155,3 +155,28 @@ element.style {
     /* margin-right: 20%; */
     color: white;
 }
+
+.pert {
+    margin-bottom: 10%;
+}
+.diagram-component {
+    margin: 3px;
+    width: 100%;
+    height: 400px;
+    border: solid 2px rgb(0, 128, 255);
+    background-color: white;
+    margin-top: -25px;
+    margin-bottom: 45px;
+}
+canvas {
+    margin-top: 24px;
+    margin-left: 5px;
+    border: none;
+    width: 100%;
+}
+
+.pert-title {
+    color: white;
+    position: absolute;
+    margin-top: -50px;
+}
