@@ -193,6 +193,8 @@ function Project() {
       const [end4, setTaskEnd4] = useState("2022-04-17");
       const [predecessors4, setTaskPrec4] = useState(3);
       const [progression4, setTaskProgression4] = useState(""); 
+      // -----------------------------------------------------------
+      const [critical0, setCritical0] = useState(false);
 
     const print = async () => {     
       const content = document.getElementsByClassName('wx-default');
@@ -200,7 +202,6 @@ function Project() {
       window.print(content.innerHTML);
     };
 
-    // pert
 
     // gantt
     // const tasks = [
@@ -311,7 +312,14 @@ function Project() {
         source: predecessors4,       
       },      
     
-  ];  
+  ];
+  
+  // ?s
+  const critixal  = async () => {
+    if (duration < 50) {
+      setCritical0(true);
+    }
+  }
 
   console.log(trueTasks);
    
@@ -401,7 +409,7 @@ function Project() {
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
             setProjects(data.projects);
-            setProjectsTask(data.projects.task);
+            // setProjectsTask(data.projects.task);
             // console.log(projects[projectId].name);
         } catch (err) {
             console.error(err);
@@ -414,6 +422,25 @@ function Project() {
     console.log(projectsTask);
     // const trueTasks = projectsTask;
 
+    // fetch user task
+    const fetchUsertask = async () => {
+      try {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();            
+        setProjects(data.projects);
+        setProjectsTask(data.projects[projectId].task);
+        console.log(projectsTask);
+        setTaskName(projectsTask[0].text);
+        setTaskDuration(projectsTask[0].duration);
+        // setTaskStart(projectsTask[0].) --------------------????(-----)
+
+      } catch (err) {
+        console.error(err);
+        alert("An error occured while fetching user data");
+      }
+    }
+
     // update on firebase
     const updateProjectstask = async () => {
       console.log(projectId);
@@ -425,9 +452,9 @@ function Project() {
 
       const userDocByName = doc(db, "users", name);
       const projectsMap = Object.entries(projects);
-      await updateDoc(userDocByName, {
-        projects: projects
-      });
+      // await updateDoc(userDocByName, {
+      //   projects: projects
+      // });
       alert("Sauvegarde termine");
     };
 
@@ -437,7 +464,8 @@ function Project() {
 
         fetchUserProject();
         fetchUserName();
-        // updateProjectstask();
+        // updateProjectstask();        
+        fetchUsertask();
     }, [user, loading]);
     
 
@@ -527,10 +555,10 @@ function Project() {
       
           </tr>  
           <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={taskName} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={duration} onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
               {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td> */}
               <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
               <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
@@ -597,7 +625,7 @@ function Project() {
         divClassName='diagram-component'        
 
         nodeDataArray={[
-          { key: 1, text: taskName, length: 0, earlyStart: 0, lateFinish: 0, critical: true },
+          { key: 1, text: taskName, length: 0, earlyStart: 0, lateFinish: 0, critical: critical0 },
           { key: 2, text: taskName1, length: 4, earlyStart: 0, lateFinish: 4, critical: true },
           { key: 3, text: taskName2, length: 5.33, earlyStart: 0, lateFinish: 9.17, critical: false },
           { key: 4, text: taskName3, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: true },
