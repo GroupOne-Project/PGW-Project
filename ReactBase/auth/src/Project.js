@@ -326,9 +326,10 @@ function Project() {
     const links = [{ target: 1, type: 0 }];    
 
     // console.log(window.location.pathname);    
-    const projectId = window.location.href.split('?')[1][0];
+    const projectId = (window.location.href.split('?')[1][0]);
     // console.log("ok");
-    console.log(projectId);
+    console.log(typeof(projectId));
+    console.log(projectId);    
     
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();        
@@ -408,14 +409,15 @@ function Project() {
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
-            setProjects(data.projects);
+            setProjects(data.projects);                        
             setProjectsTask(projects[projectId].task);
             // setProjectsTask(data.projects.task);
             // console.log(projects[projectId].name);
             console.log("project task",projectsTask);
             setTaskName(projectsTask[0].text);
             setTaskDuration(projectsTask[0].duration);
-            // console.log(projectsTask[0].start_date);
+            setTaskStart((projectsTask[0].start_date).toDate());
+            console.log(start);
             setTaskProgression(parseInt(projectsTask[0].progress));
             setTaskPrec(parseInt(projectsTask[0].parent))
         } catch (err) {
@@ -556,7 +558,7 @@ function Project() {
           <tr className="tr" >  
               <td className="td"><input defaultValue={taskName} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
+              <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue={start} id="star" type="date"></input></td>
               <td className="td"><input defaultValue={duration} onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
               {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td> */}
               <td className="td"><input defaultValue={progression} onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
@@ -607,7 +609,7 @@ function Project() {
   {/* <div className="run"><button onClick={run} className="run-btn">Gantt ...</button></div> */} 
             <DefaultTheme />
 
-            <div class="wx-default">
+            <div className="wx-default">
                 <div className="gantt-title">GANTT</div>
                 {/* <Gantt /> */}                
                 <Gantt scales={scales} columns={columns} tasks={trueTasks} links={links} />
@@ -617,7 +619,7 @@ function Project() {
         {/* ------------------------- */}        
 
         <div className="pert-title">PERT</div>
-        <div className="pert" class="p-4 w-full">
+        <div className="pert" className="p-4 w-full">
         <div>      
       <ReactDiagram
         initDiagram={initDiagram}
