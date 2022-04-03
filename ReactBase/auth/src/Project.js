@@ -321,7 +321,7 @@ function Project() {
     }
   }
 
-  console.log(trueTasks);
+  // console.log(trueTasks);
    
     const links = [{ target: 1, type: 0 }];    
 
@@ -409,8 +409,15 @@ function Project() {
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
             setProjects(data.projects);
+            setProjectsTask(projects[projectId].task);
             // setProjectsTask(data.projects.task);
             // console.log(projects[projectId].name);
+            console.log("project task",projectsTask);
+            setTaskName(projectsTask[0].text);
+            setTaskDuration(projectsTask[0].duration);
+            // console.log(projectsTask[0].start_date);
+            setTaskProgression(parseInt(projectsTask[0].progress));
+            setTaskPrec(parseInt(projectsTask[0].parent))
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -419,27 +426,19 @@ function Project() {
     // console.log(projects[projectId]);
 
     // fetch true task
-    console.log(projectsTask);
+    // console.log(projectsTask);
     // const trueTasks = projectsTask;
 
     // fetch user task
-    const fetchUsertask = async () => {
-      try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const doc = await getDocs(q);
-        const data = doc.docs[0].data();            
-        setProjects(data.projects);
-        setProjectsTask(data.projects[projectId].task);
-        console.log(projectsTask);
-        setTaskName(projectsTask[0].text);
-        setTaskDuration(projectsTask[0].duration);
-        // setTaskStart(projectsTask[0].) --------------------????(-----)
+    // const fetchUsertask = async () => {
+    //   try {      
+    //     // setProjectsTask(projects[projectId].task);        
 
-      } catch (err) {
-        console.error(err);
-        alert("An error occured while fetching user data");
-      }
-    }
+    //   } catch (err) {
+    //     console.error(err);
+    //     alert("Error occured while fetching user data");
+    //   }
+    // }
 
     // update on firebase
     const updateProjectstask = async () => {
@@ -452,9 +451,9 @@ function Project() {
 
       const userDocByName = doc(db, "users", name);
       const projectsMap = Object.entries(projects);
-      // await updateDoc(userDocByName, {
-      //   projects: projects
-      // });
+      await updateDoc(userDocByName, {
+        projects: projects
+      });
       alert("Sauvegarde termine");
     };
 
@@ -465,7 +464,7 @@ function Project() {
         fetchUserProject();
         fetchUserName();
         // updateProjectstask();        
-        fetchUsertask();
+        // fetchUsertask();
     }, [user, loading]);
     
 
@@ -560,8 +559,8 @@ function Project() {
               <td className="td"><input onChange={(e) => setTaskStart(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
               <td className="td"><input defaultValue={duration} onChange={(e) => setTaskDuration(e.target.value)} type="number"></input></td>
               {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd(e.target.value)} type="date"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={progression} onChange={(e) => setTaskProgression(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={predecessors} onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
           </tr>  
           <tr className="tr" >  
               <td className="td"><input onChange={(e) => setTaskName1(e.target.value)} type="text"></input></td>
