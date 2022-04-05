@@ -7,13 +7,12 @@ import { doc, updateDoc, deleteField } from "firebase/firestore";
 import "./Project.css";
 // import Ganttt from "./Ganttt";
 
-import jsPERT from "js-pert";
+// import jsPERT from "js-pert";
 import * as go from "gojs"
 import { ReactDiagram } from 'gojs-react';
-import $ from "jquery";
+// import $ from "jquery";
 import { Gantt, DefaultTheme, MaterialTheme } from "@dhtmlx/trial-react-gantt";
-import { async } from "@firebase/util";
-
+// import { async } from "@firebase/util";
 
 function initDiagram() {
   
@@ -409,17 +408,44 @@ function Project() {
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
-            setProjects(data.projects);                        
+            setProjects(data.projects);      
+            console.log(projects);
+            console.log(projects[projectId]);
+            const task = "task";
             setProjectsTask(projects[projectId].task);
             // setProjectsTask(data.projects.task);
-            // console.log(projects[projectId].name);
+            // console.log(projects[projectId].name);            
             console.log("project task",projectsTask);
             setTaskName(projectsTask[0].text);
             setTaskDuration(projectsTask[0].duration);
-            setTaskStart((projectsTask[0].start_date).toDate());
-            console.log(start);
+            setTaskStart((projectsTask[0].start_date).toDate());           
             setTaskProgression(parseInt(projectsTask[0].progress));
             setTaskPrec(parseInt(projectsTask[0].parent))
+            
+            setTaskName1(projectsTask[1].text);
+            setTaskDuration1(projectsTask[1].duration);
+            setTaskStart1((projectsTask[1].start_date).toDate());           
+            setTaskProgression1(parseInt(projectsTask[1].progress));
+            setTaskPrec1(parseInt(projectsTask[1].parent))
+
+            setTaskName2(projectsTask[2].text);
+            setTaskDuration2(projectsTask[2].duration);
+            setTaskStart2((projectsTask[2].start_date).toDate());           
+            setTaskProgression2(parseInt(projectsTask[2].progress));
+            setTaskPrec2(parseInt(projectsTask[2].parent))
+
+            setTaskName3(projectsTask[3].text);
+            setTaskDuration3(projectsTask[3].duration);
+            setTaskStart3((projectsTask[3].start_date).toDate());           
+            setTaskProgression3(parseInt(projectsTask[3].progress));
+            setTaskPrec3(parseInt(projectsTask[3].parent))
+
+            setTaskName4(projectsTask[4].text);
+            setTaskDuration4(projectsTask[4].duration);
+            setTaskStart4((projectsTask[4].start_date).toDate());           
+            setTaskProgression4(parseInt(projectsTask[4].progress));
+            setTaskPrec4(parseInt(projectsTask[4].parent))
+
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -463,8 +489,8 @@ function Project() {
         if (loading) return;
         if (!user) return navigate("/");
 
-        fetchUserProject();
         fetchUserName();
+        fetchUserProject();
         // updateProjectstask();        
         // fetchUsertask();
     }, [user, loading]);
@@ -565,41 +591,41 @@ function Project() {
               <td className="td"><input defaultValue={predecessors} onChange={(e) => setTaskPrec(e.target.value)} type="number"></input></td>
           </tr>  
           <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName1(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={taskName1} onChange={(e) => setTaskName1(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskStart1(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskDuration1(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={start1} onChange={(e) => setTaskStart1(e.target.value)} id="star" type="date"></input></td>
+              <td className="td"><input defaultValue={duration1} onChange={(e) => setTaskDuration1(e.target.value)} type="number"></input></td>
               {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskProgression1(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec1(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={progression1} onChange={(e) => setTaskProgression1(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={predecessors1} onChange={(e) => setTaskPrec1(e.target.value)} type="number"></input></td>
           </tr>   
           <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName2(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={taskName2} onChange={(e) => setTaskName2(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskStart2(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskDuration2(e.target.value)} type="number"></input></td>
-              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd2(e.target.value)} type="date"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskProgression2(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec2(e.target.value)} type="number"></input></td>
-          </tr>  
-          <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName3(e.target.value)} type="text"></input></td>
-              {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskStart3(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskDuration3(e.target.value)} type="number"></input></td>
-              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskProgression3(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec3(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={start2} onChange={(e) => setTaskStart2(e.target.value)} id="star" type="date"></input></td>
+              <td className="td"><input defaultValue={duration2} onChange={(e) => setTaskDuration2(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td> */}
+              <td className="td"><input defaultValue={progression2} onChange={(e) => setTaskProgression2(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={predecessors2} onChange={(e) => setTaskPrec2(e.target.value)} type="number"></input></td>
           </tr>   
           <tr className="tr" >  
-              <td className="td"><input onChange={(e) => setTaskName4(e.target.value)} type="text"></input></td>
+              <td className="td"><input defaultValue={taskName3} onChange={(e) => setTaskName3(e.target.value)} type="text"></input></td>
               {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskStart4(e.target.value)} defaultValue="2022-04-11" id="star" type="date"></input></td>
-              <td className="td"><input onChange={(e) => setTaskDuration4(e.target.value)} type="number"></input></td>
-              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd3(e.target.value)} type="date"></input></td> */}
-              <td className="td"><input onChange={(e) => setTaskProgression4(e.target.value)} type="number"></input></td>
-              <td className="td"><input onChange={(e) => setTaskPrec4(e.target.value)} type="number"></input></td>
-          </tr>                          
+              <td className="td"><input defaultValue={start3} onChange={(e) => setTaskStart3(e.target.value)} id="star" type="date"></input></td>
+              <td className="td"><input defaultValue={duration3} onChange={(e) => setTaskDuration3(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td> */}
+              <td className="td"><input defaultValue={progression3} onChange={(e) => setTaskProgression3(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={predecessors3} onChange={(e) => setTaskPrec3(e.target.value)} type="number"></input></td>
+          </tr>   
+          <tr className="tr" >  
+              <td className="td"><input defaultValue={taskName4} onChange={(e) => setTaskName4(e.target.value)} type="text"></input></td>
+              {/* <td className="td"><input defaultValue={projectsTask[0].text} onChange={(e) => setTaskName(e.target.value)} type="text"></input></td> */}
+              <td className="td"><input defaultValue={start4} onChange={(e) => setTaskStart4(e.target.value)} id="star" type="date"></input></td>
+              <td className="td"><input defaultValue={duration4} onChange={(e) => setTaskDuration4(e.target.value)} type="number"></input></td>
+              {/* <td className="td"><input defaultValue="2022-04-17" onChange={(e) => setTaskEnd1(e.target.value)} type="date"></input></td> */}
+              <td className="td"><input defaultValue={progression4} onChange={(e) => setTaskProgression4(e.target.value)} type="number"></input></td>
+              <td className="td"><input defaultValue={predecessors4} onChange={(e) => setTaskPrec4(e.target.value)} type="number"></input></td>
+          </tr>                                     
         </tbody>  
       </table> 
     </div>
@@ -619,7 +645,7 @@ function Project() {
         {/* ------------------------- */}        
 
         <div className="pert-title">PERT</div>
-        <div className="pert" className="p-4 w-full">
+        <div className="pert" class="p-4 w-full">
         <div>      
       <ReactDiagram
         initDiagram={initDiagram}
@@ -645,7 +671,7 @@ function Project() {
       />      
     </div>
         </div>
-
+        
         </>
         );
     }
