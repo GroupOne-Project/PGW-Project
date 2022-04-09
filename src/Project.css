@@ -1,0 +1,182 @@
+.paginator {
+    margin-bottom: 500px;    
+}
+/* .header-dash {
+    margin-left: -80%;
+    margin-right: -80%;
+} */
+.acc {
+    text-decoration: none;
+    color: black;    
+}
+
+.wx-default {
+    display: flex;
+    resize: both;    
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    /* overflow: auto; */
+}
+
+.ap-sup {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    margin: 10px;
+}
+.run button{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.ap {
+    color: green;
+}
+.sup {
+    color: red;
+}
+
+element.style {
+    flex: 0 0 350px;
+}
+.Gantt-module_layout__3I6ye {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100px;
+    margin-top: 35px;        
+}
+.Grid-module_grid__2VUMH {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* border-right: 1px solid var(--wx-border-color); */
+    overflow: hidden;
+    margin-left: -6%;
+    min-height: 400px;
+    background-color: white;    
+    border: 2px solid rgb(0, 128, 255);
+    resize: vertical;
+    overflow: auto;
+}
+.Gantt-module_content__36naa {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 400px; 
+    margin-right: 0%;
+    background-color: white;
+    border: 2px solid rgb(0, 128, 255);
+    resize: both;
+    overflow: auto;
+}
+
+.input-taches {
+    border: 2px solid rgb(0, 128, 255);
+    margin-top: 20px;      
+}
+.run  {
+    /* margin-top: 20px;
+    margin-bottom: -20px;
+    display: flex;
+    justify-content: center; */
+}
+.run-btn {
+    color: darkblue;
+}
+
+/* wbs from king */
+.container{
+    min-height: 200px;
+    background: #fdfdfd; 
+  
+  }
+  .title{
+    /* border: 2px solid rgb(0, 255, 136); */
+    background: #7688CF;
+    border-start-start-radius: 12px;
+    border-start-end-radius: 12px;
+    text-align: left;
+    color: white;
+    padding: 10px;
+  }
+  
+  .listeDeroulante{
+    background:#7688CF;
+    border: #7688CF;
+    color: #ffffff;
+  }
+  .tableau{
+      margin: 5px;
+      margin-left: 0;
+    margin-right: 0;
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+  .th {   
+    padding: 11px;           
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid #ccc;   
+    text-align: left;   
+    font-size: 14px;  
+}  
+.td input {
+    padding: 3px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.tr {
+    width: 100%;      
+}
+.tbody {
+      width: 100%;
+  }
+
+
+/*  */
+
+.gantt-title, .wbs-title {
+    color: white;
+    margin-bottom: -10px;
+}
+.gantt-title {
+    margin-top: 13px;
+    margin-bottom: 5px;
+}
+
+.project-fetch {
+    display: grid;
+    padding: 10px;
+    /* margin-right: 20%; */
+    color: white;
+}
+
+.pert {
+    margin-bottom: 10%;
+}
+.diagram-component {
+    margin: 3px;
+    width: 100%;
+    height: 400px;
+    border: solid 2px rgb(0, 128, 255);
+    background-color: white;
+    margin-top: -25px;
+    margin-bottom: 45px;
+}
+canvas {
+    margin-top: 24px;
+    margin-left: 5px;
+    border: none;
+    width: 100%;
+}
+
+.pert-title {
+    color: white;
+    position: absolute;
+    margin-top: -50px;
+}
