@@ -140,16 +140,28 @@ function initDiagram() {
     }
     window.addEventListener('DOMContentLoaded', initDiagram);
 
-
 /**
  * This function handles any changes to the GoJS model.
  * It is here that you would make any updates to your React state, which is dicussed below.
  */
- function handleModelChange(changes) {
-  // alert('GoJS model changed!');
-}
+//  function handleModelChange(changes) {
+//   alert('GoJS model changed!');
+// }
 
 function Project() {
+
+      // console.log(window.location.pathname);    
+      const projectId = (window.location.href.split('?')[1][0]);
+      // console.log("ok");
+      console.log(typeof(projectId));
+      console.log(projectId);
+    
+      const [user, loading, error] = useAuthState(auth);
+      const navigate = useNavigate();        
+      const [name, setName] = useState("");
+      const [projects, setProjects] = useState("");
+      const [projectsTask, setProjectsTask] = useState("");
+      const [projectsAfterDel, setProjectsAfterDel] = useState("");
 
       // les inputs de task
       const [taskName, setTaskName] = useState("");
@@ -201,23 +213,6 @@ function Project() {
       window.print(content.innerHTML);
     };
 
-
-    // gantt
-    // const tasks = [
-    //     {
-    //       id: 'Task 1',
-    //       name: 'Redesign website',
-    //       start: '2016-12-28',
-    //       end: '2016-12-31',
-    //       progress: 20,
-    //       dependencies: 'Task 2, Task 3',
-    //       custom_class: 'bar-milestone' // optional
-    //     },        
-    // ]    
-    // const gantt = new Gantt("#gantt", tasks);
-    // console.log(gantt);
-
-
     const scales = [
       { unit: "month", step: 1, format: "MMMM yyy" },
       { unit: "day", step: 1, format: "d" },
@@ -230,36 +225,6 @@ function Project() {
       // { name: "add-task", label: "", width: "50px", align: "center" },
   ];
 
-  const tasks = [
-    {
-        id: 1,
-        open: true,
-        start_date: "2022-03-09",
-        duration: 2,
-        text: "tache 1",
-        progress: 60,
-        type: "project",
-    },
-    {
-        id: 2,
-        // open: true,
-        parent: 1,
-        start_date: "2022-03-10",
-        duration: 4,
-        text: "tache 2",
-        progress: 10,
-    },
-  //   {
-  //     id: 3,
-  //     parent: 2,
-  //     start_date: "2022-03-09",
-  //     duration: 5,
-  //     text: "do",
-  //     progress: 80,
-  // },
-  
-];
-  
   const trueTasks = [
       {
           id: 1,
@@ -324,18 +289,6 @@ function Project() {
    
     const links = [{ target: 1, type: 0 }];    
 
-    // console.log(window.location.pathname);    
-    const projectId = (window.location.href.split('?')[1][0]);
-    // console.log("ok");
-    console.log(typeof(projectId));
-    console.log(projectId);    
-    
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();        
-    const [name, setName] = useState("");
-    const [projects, setProjects] = useState("");
-    const [projectsTask, setProjectsTask] = useState("");
-    const [projectsAfterDel, setProjectsAfterDel] = useState("");
     
      // Fetch userName using user?.uid
      const fetchUserName = async () => {    
@@ -350,13 +303,6 @@ function Project() {
           alert("An error occured while fetching user data");
         }
       }; 
-
-      const run = async () => {   
-        const star = document.getElementById("star").value;
-        alert("Le Gantt se genere automatiquement remplissez juste le tableau");
-        console.log(taskName);
-        // alert(start);
-      }
       
     const deleteUserProject = async () => {
         // delete user project by id
@@ -405,68 +351,51 @@ function Project() {
     // fetch user project who id == project.id
     const fetchUserProject = async () => {
         try {
+            console.log("pro",projectId);
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
             setProjects(data.projects);      
-            console.log(projects);
-            console.log(projects[projectId]);
-            const task = "task";
-            setProjectsTask(projects[projectId].task);
+            console.log(data.projects[projectId].task[0]);     
+            // setProjectsTask(data.projects[projectId].task);
             // setProjectsTask(data.projects.task);
             // console.log(projects[projectId].name);            
-            console.log("project task",projectsTask);
-            setTaskName(projectsTask[0].text);
-            setTaskDuration(projectsTask[0].duration);
-            setTaskStart((projectsTask[0].start_date).toDate());           
-            setTaskProgression(parseInt(projectsTask[0].progress));
-            setTaskPrec(parseInt(projectsTask[0].parent))
+            // console.log(projectsTask);
+            setTaskName((data.projects[projectId].task[0]).text);
+            setTaskDuration(data.projects[projectId].task[0].duration);
+            setTaskStart((data.projects[projectId].task[0].start_date).toDate());           
+            setTaskProgression(parseInt(data.projects[projectId].task[0].progress));
+            setTaskPrec(parseInt(data.projects[projectId].task[0].parent))
             
-            setTaskName1(projectsTask[1].text);
-            setTaskDuration1(projectsTask[1].duration);
-            setTaskStart1((projectsTask[1].start_date).toDate());           
-            setTaskProgression1(parseInt(projectsTask[1].progress));
-            setTaskPrec1(parseInt(projectsTask[1].parent))
+            setTaskName1(data.projects[projectId].task[1].text);
+            setTaskDuration1(data.projects[projectId].task[1].duration);
+            setTaskStart1((data.projects[projectId].task[1].start_date).toDate());           
+            setTaskProgression1(parseInt(data.projects[projectId].task[1].progress));
+            setTaskPrec1(parseInt(data.projects[projectId].task[1].parent))
 
-            setTaskName2(projectsTask[2].text);
-            setTaskDuration2(projectsTask[2].duration);
-            setTaskStart2((projectsTask[2].start_date).toDate());           
-            setTaskProgression2(parseInt(projectsTask[2].progress));
-            setTaskPrec2(parseInt(projectsTask[2].parent))
+            setTaskName2(data.projects[projectId].task[2].text);
+            setTaskDuration2(data.projects[projectId].task[2].duration);
+            setTaskStart2((data.projects[projectId].task[2].start_date).toDate());           
+            setTaskProgression2(parseInt(data.projects[projectId].task[2].progress));
+            setTaskPrec2(parseInt(data.projects[projectId].task[2].parent))
 
-            setTaskName3(projectsTask[3].text);
-            setTaskDuration3(projectsTask[3].duration);
-            setTaskStart3((projectsTask[3].start_date).toDate());           
-            setTaskProgression3(parseInt(projectsTask[3].progress));
-            setTaskPrec3(parseInt(projectsTask[3].parent))
+            setTaskName3(data.projects[projectId].task[3].text);
+            setTaskDuration3(data.projects[projectId].task[3].duration);
+            setTaskStart3((data.projects[projectId].task[3].start_date).toDate());           
+            setTaskProgression3(parseInt(data.projects[projectId].task[3].progress));
+            setTaskPrec3(parseInt(data.projects[projectId].task[3].parent))
 
-            setTaskName4(projectsTask[4].text);
-            setTaskDuration4(projectsTask[4].duration);
-            setTaskStart4((projectsTask[4].start_date).toDate());           
-            setTaskProgression4(parseInt(projectsTask[4].progress));
-            setTaskPrec4(parseInt(projectsTask[4].parent))
+            setTaskName4(data.projects[projectId].task[4].text);
+            setTaskDuration4(data.projects[projectId].task[4].duration);
+            setTaskStart4((data.projects[projectId].task[4].start_date).toDate());           
+            setTaskProgression4(parseInt(data.projects[projectId].task[4].progress));
+            setTaskPrec4(parseInt(data.projects[projectId].task[4].parent))
 
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
         }
-    }; 
-    // console.log(projects[projectId]);
-
-    // fetch true task
-    // console.log(projectsTask);
-    // const trueTasks = projectsTask;
-
-    // fetch user task
-    // const fetchUsertask = async () => {
-    //   try {      
-    //     // setProjectsTask(projects[projectId].task);        
-
-    //   } catch (err) {
-    //     console.error(err);
-    //     alert("Error occured while fetching user data");
-    //   }
-    // }
+    };     
 
     // update on firebase
     const updateProjectstask = async () => {
@@ -489,8 +418,11 @@ function Project() {
         if (loading) return;
         if (!user) return navigate("/");
 
-        fetchUserName();
-        fetchUserProject();
+        setTimeout(() => {
+          console.log("time");
+          fetchUserName();
+          fetchUserProject();
+        }, 2000)
         // updateProjectstask();        
         // fetchUsertask();
     }, [user, loading]);
@@ -652,10 +584,10 @@ function Project() {
         divClassName='diagram-component'        
 
         nodeDataArray={[
-          { key: 1, text: taskName, length: 0, earlyStart: 0, lateFinish: 0, critical: critical0 },
-          { key: 2, text: taskName1, length: 4, earlyStart: 0, lateFinish: 4, critical: true },
+          { key: 1, text: taskName, length: 0, earlyStart: 0, lateFinish: 0, critical: false },
+          { key: 2, text: taskName1, length: 4, earlyStart: 0, lateFinish: 4, critical: false },
           { key: 3, text: taskName2, length: 5.33, earlyStart: 0, lateFinish: 9.17, critical: false },
-          { key: 4, text: taskName3, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: true },
+          { key: 4, text: taskName3, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: false },
           { key: 5, text: taskName4, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: false },
         ]}
         linkDataArray={[
@@ -667,7 +599,7 @@ function Project() {
         ]}
         
         
-        onModelChange={handleModelChange}
+
       />      
     </div>
         </div>

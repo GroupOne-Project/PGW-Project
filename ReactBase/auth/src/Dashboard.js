@@ -110,7 +110,7 @@ function Dashboard() {
                 {/* <li><button>A Propos</button></li> */}
                 {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
-                  Se deconcter
+                  Se deconecter
                   </button>
                 </li>
             </ul>
