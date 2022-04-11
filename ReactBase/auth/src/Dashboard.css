@@ -311,3 +311,7 @@ button:hover {
 .recent-a {
   text-decoration: none;
 }
+.re {
+  margin: 2px;
+  padding: 10px;
+}

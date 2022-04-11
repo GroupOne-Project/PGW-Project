@@ -178,7 +178,7 @@ function Project() {
       const [start1, setTaskStart1] = useState("2022-04-11");
       // setTaskStart(starts);
       const [end1, setTaskEnd1] = useState("2022-04-17");
-      const [predecessors1, setTaskPrec1] = useState(1);
+      const [predecessors1, setTaskPrec1] = useState("");
       const [progression1, setTaskProgression1] = useState(""); 
       // -----------------------------------------------------------
       const [taskName2, setTaskName2] = useState("");
@@ -186,7 +186,7 @@ function Project() {
       const [start2, setTaskStart2] = useState("2022-04-11");
       // setTaskStart(starts);
       const [end2, setTaskEnd2] = useState("2022-04-17");
-      const [predecessors2, setTaskPrec2] = useState(2);
+      const [predecessors2, setTaskPrec2] = useState("");
       const [progression2, setTaskProgression2] = useState(""); 
       // -----------------------------------------------------------
       const [taskName3, setTaskName3] = useState("");
@@ -194,7 +194,7 @@ function Project() {
       const [start3, setTaskStart3] = useState("2022-04-11");
       // setTaskStart(starts);
       const [end3, setTaskEnd3] = useState("2022-04-17");
-      const [predecessors3, setTaskPrec3] = useState(3);
+      const [predecessors3, setTaskPrec3] = useState("");
       const [progression3, setTaskProgression3] = useState(""); 
       // -----------------------------------------------------------
       const [taskName4, setTaskName4] = useState("");
@@ -202,7 +202,7 @@ function Project() {
       const [start4, setTaskStart4] = useState("2022-04-11");
       // setTaskStart(starts);
       const [end4, setTaskEnd4] = useState("2022-04-17");
-      const [predecessors4, setTaskPrec4] = useState(3);
+      const [predecessors4, setTaskPrec4] = useState("");
       const [progression4, setTaskProgression4] = useState(""); 
       // -----------------------------------------------------------
       const [critical0, setCritical0] = useState(false);
@@ -339,8 +339,7 @@ function Project() {
                 projects: projectsAfterDel
             });
             console.log('dell');
-            alert("Projet supprimer avec succes, Vous pouvez retourner au Menu");
-            alert("")
+            alert("Projet supprimer avec succes, Vous pouvez retourner au Menu");       
 
           } catch (err) {
             console.error(err);
@@ -355,42 +354,44 @@ function Project() {
             const q = query(collection(db, "users"), where("uid", "==", user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();            
-            setProjects(data.projects);      
-            console.log(data.projects[projectId].task[0]);     
-            // setProjectsTask(data.projects[projectId].task);
-            // setProjectsTask(data.projects.task);
-            // console.log(projects[projectId].name);            
-            // console.log(projectsTask);
-            setTaskName((data.projects[projectId].task[0]).text);
-            setTaskDuration(data.projects[projectId].task[0].duration);
-            setTaskStart((data.projects[projectId].task[0].start_date).toDate());           
-            setTaskProgression(parseInt(data.projects[projectId].task[0].progress));
-            setTaskPrec(parseInt(data.projects[projectId].task[0].parent))
-            
-            setTaskName1(data.projects[projectId].task[1].text);
-            setTaskDuration1(data.projects[projectId].task[1].duration);
-            setTaskStart1((data.projects[projectId].task[1].start_date).toDate());           
-            setTaskProgression1(parseInt(data.projects[projectId].task[1].progress));
-            setTaskPrec1(parseInt(data.projects[projectId].task[1].parent))
+            setProjects(data.projects);  
+            if ( data.projects[projectId].task != undefined ) {                          
+              console.log(data.projects[projectId].task[0]);     
+              // setProjectsTask(data.projects[projectId].task);
+              // setProjectsTask(data.projects.task);
+              // console.log(projects[projectId].name);            
+              // console.log(projectsTask);
+              setTaskName((data.projects[projectId].task[0]).text);
+              setTaskDuration(data.projects[projectId].task[0].duration);
+              setTaskStart((data.projects[projectId].task[0].start_date));           
+              setTaskProgression(parseInt(data.projects[projectId].task[0].progress));
+              setTaskPrec(parseInt(data.projects[projectId].task[0].parent))
+              
+              setTaskName1(data.projects[projectId].task[1].text);
+              setTaskDuration1(data.projects[projectId].task[1].duration);
+              setTaskStart1((data.projects[projectId].task[1].start_date));           
+              setTaskProgression1(parseInt(data.projects[projectId].task[1].progress));
+              setTaskPrec1(parseInt(data.projects[projectId].task[1].parent))
 
-            setTaskName2(data.projects[projectId].task[2].text);
-            setTaskDuration2(data.projects[projectId].task[2].duration);
-            setTaskStart2((data.projects[projectId].task[2].start_date).toDate());           
-            setTaskProgression2(parseInt(data.projects[projectId].task[2].progress));
-            setTaskPrec2(parseInt(data.projects[projectId].task[2].parent))
+              setTaskName2(data.projects[projectId].task[2].text);
+              setTaskDuration2(data.projects[projectId].task[2].duration);
+              setTaskStart2((data.projects[projectId].task[2].start_date));           
+              setTaskProgression2(parseInt(data.projects[projectId].task[2].progress));
+              setTaskPrec2(parseInt(data.projects[projectId].task[2].parent))
 
-            setTaskName3(data.projects[projectId].task[3].text);
-            setTaskDuration3(data.projects[projectId].task[3].duration);
-            setTaskStart3((data.projects[projectId].task[3].start_date).toDate());           
-            setTaskProgression3(parseInt(data.projects[projectId].task[3].progress));
-            setTaskPrec3(parseInt(data.projects[projectId].task[3].parent))
+              setTaskName3(data.projects[projectId].task[3].text);
+              setTaskDuration3(data.projects[projectId].task[3].duration);
+              setTaskStart3((data.projects[projectId].task[3].start_date));           
+              setTaskProgression3(parseInt(data.projects[projectId].task[3].progress));
+              setTaskPrec3(parseInt(data.projects[projectId].task[3].parent))
 
-            setTaskName4(data.projects[projectId].task[4].text);
-            setTaskDuration4(data.projects[projectId].task[4].duration);
-            setTaskStart4((data.projects[projectId].task[4].start_date).toDate());           
-            setTaskProgression4(parseInt(data.projects[projectId].task[4].progress));
-            setTaskPrec4(parseInt(data.projects[projectId].task[4].parent))
-
+              setTaskName4(data.projects[projectId].task[4].text);
+              setTaskDuration4(data.projects[projectId].task[4].duration);
+              setTaskStart4((data.projects[projectId].task[4].start_date));           
+              setTaskProgression4(parseInt(data.projects[projectId].task[4].progress));
+              setTaskPrec4(parseInt(data.projects[projectId].task[4].parent))
+            }
+            console.log(predecessors4);
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -400,8 +401,60 @@ function Project() {
     // update on firebase
     const updateProjectstask = async () => {
       console.log(projectId);
-      const projectIdMap = projects[projectId];      
-      projectIdMap["task"] = trueTasks;
+      const projectIdMap = projects[projectId];   
+      const trueTasksFinal = [
+        {
+            id: 1,
+            // open: true,
+            start_date: start,
+            duration: duration,
+            text: taskName,
+            progress: progression,
+            type: "project",
+        }, 
+        {
+          id: 2,
+          // open: true,
+          start_date: start1,
+          duration: duration1,
+          text: taskName1,
+          progress: progression1,
+          parent: predecessors1,
+          source: predecessors1,
+        },
+        {
+          id: 3,
+          // open: true,
+          start_date: start2,
+          duration: duration2,
+          text: taskName2,
+          progress: progression2,
+          parent: predecessors2,
+          source: predecessors2,
+        },  
+        {
+          id: 4,
+          // open: true,
+          start_date: start3,
+          duration: duration3,
+          text: taskName3,
+          progress: progression3,
+          parent: predecessors3, 
+          source: predecessors3,       
+        },    
+        {
+          id: 5,
+          // open: true,
+          start_date: start4,
+          duration: duration4,
+          text: taskName4,
+          progress: progression4,
+          parent: predecessors3, 
+          source: predecessors4,       
+        },      
+      
+    ];   
+      projectIdMap["task"] = trueTasksFinal;
       console.log(projectIdMap);
       projects[projectId] = projectIdMap;
       console.log(projects);
@@ -460,7 +513,7 @@ function Project() {
                 {/* <li><button>A Propos</button></li> */}
                 {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
-                  Se deconcter
+                  Se deconecter
                   </button>
                 </li>
             </ul>
@@ -589,7 +642,7 @@ function Project() {
           { key: 3, text: taskName2, length: 5.33, earlyStart: 0, lateFinish: 9.17, critical: false },
           { key: 4, text: taskName3, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: false },
           { key: 5, text: taskName4, length: 5.17, earlyStart: 4, lateFinish: 9.17, critical: false },
-        ]}
+        ]}       
         linkDataArray={[
           { from: 0, to: 1 },
           { from: predecessors1, to: 2 },

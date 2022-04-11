@@ -62,6 +62,11 @@ function Dashboard() {
         setRecentProjects(recentProjectss);
       }
       // setRecentProjects(recentProjects);
+     
+      if (recentProjects == 0) {
+        console.log("pas")
+        setRecentProjects("vide");
+      }
 
     } catch (err) {
       console.error(err);
@@ -141,7 +146,7 @@ function Dashboard() {
         <div class="container2">
           {/* User recents Project */}
           <div class="title">Projet recent</div>
-            <div>{recentProjects}</div>          
+            <div className="re">{recentProjects}</div>          
           </div>
         </section>
         {/* --------------main------------- */}
