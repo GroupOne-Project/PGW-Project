@@ -12,7 +12,7 @@ function Landing() {
                 <div className="content">
                     <h3>Welcome To PGW Project</h3>
                     <p>Conçevez le WBS, PERT et le GANTT de votre projet meintenant.</p>
-                    <img src="/images/landing-header-1ac8944e97.png"></img>
+                    <img src="/images/cc.png"></img>
                     <a href="/Login">Commencer</a>
                 </div>
             </div>
@@ -61,12 +61,12 @@ function Landing() {
                     <h3>Notre Equipe</h3>
                     <div className="images">
                         <div className="item">
-                            <img src="/images/s.png"></img>
+                            <img src="/images/a1.png"></img>
                             <p>Soro Ange</p>
                         </div>
                         <div className="item">
                             <img src="/images/y.png"></img>
-                            <p>Coulibaly Yaya</p>
+                            <p>Coulibaly Yaya.H</p>
                         </div>
                         <div className="item">
                             <img src="/images/s.png"></img>
