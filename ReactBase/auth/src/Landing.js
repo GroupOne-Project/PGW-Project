@@ -12,7 +12,7 @@ function Landing() {
                 <div className="content">
                     <h3>Welcome To PGW Project</h3>
                     <p>Conçevez le WBS, PERT et le GANTT de votre projet meintenant.</p>
-                    <img src="/images/cc.png"></img>
+                    <img src="/images/landing-header-1ac8944e97.png"></img>
                     <a href="/Login">Commencer</a>
                 </div>
             </div>
@@ -65,27 +65,27 @@ function Landing() {
                             <p>Soro Ange</p>
                         </div>
                         <div className="item">
-                            <img src="/images/y.png"></img>
+                            <img src="/images/yy.png"></img>
                             <p>Coulibaly Yaya.H</p>
                         </div>
                         <div className="item">
-                            <img src="/images/s.png"></img>
+                            <img src="/images/ss.png"></img>
                             <p>Atse Achi</p>
                         </div>
                         <div className="item">
-                            <img src="/images/y.png"></img>
+                            <img src="/images/yy.png"></img>
                             <p>Yapi H.Joel</p>
                         </div>
                         <div className="item">
-                            <img src="/images/f.jpeg"></img>
+                            <img src="/images/ff.jpeg"></img>
                             <p>Kouassi K.Fernand</p>
                         </div>
                         <div className="item">
-                            <img src="/images/s.png"></img>
+                            <img src="/images/ss.png"></img>
                             <p>Kouassi Dominique</p>
                         </div>
                         <div className="item">
-                            <img src="/images/y.png"></img>
+                            <img src="/images/yy.png"></img>
                             <p>Trah Justin</p>
                         </div>
                     </div>

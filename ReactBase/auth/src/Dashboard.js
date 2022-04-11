@@ -137,7 +137,7 @@ function Dashboard() {
 
         {/* -------------main------------- */}
         <section className="home-dash">
-        <div class="container">
+        <div class="container-dash">
             <div class="item-dash"><button>
           <Link to="/create_project">CREER UN PROJET</Link>
         </button></div>            
