@@ -138,7 +138,9 @@ function initDiagram() {
       
       return diagram;
     }
-    window.addEventListener('DOMContentLoaded', initDiagram);
+    setTimeout(() =>  {
+      window.addEventListener('DOMContentLoaded', initDiagram);
+    }, 2000)
 
 /**
  * This function handles any changes to the GoJS model.
@@ -475,7 +477,7 @@ function Project() {
           console.log("time");
           fetchUserName();
           fetchUserProject();
-        }, 2000)
+        }, 2)
         // updateProjectstask();        
         // fetchUsertask();
     }, [user, loading]);
@@ -650,8 +652,6 @@ function Project() {
           { from: predecessors3, to: 4 },
           { from: predecessors4, to: 5 }
         ]}
-        
-        
 
       />      
     </div>
