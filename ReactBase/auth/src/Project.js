@@ -472,12 +472,9 @@ function Project() {
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
-
-        setTimeout(() => {
-          console.log("time");
-          fetchUserName();
-          fetchUserProject();
-        }, 2)
+        
+        fetchUserName();
+        fetchUserProject();        
         // updateProjectstask();        
         // fetchUsertask();
     }, [user, loading]);
