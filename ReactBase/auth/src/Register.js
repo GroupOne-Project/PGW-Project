@@ -54,7 +54,7 @@ function Register() {
           </div>
         </div> 
         <div className="already">
-          J'ai deja un compte<Link to="/Login">Me connecter</Link> now.
+          J'ai deja un compte <Link to="/Login">Me connecter</Link> meintenant.
         </div>      
       </div>
 

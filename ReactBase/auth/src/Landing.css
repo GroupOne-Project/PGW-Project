@@ -188,7 +188,8 @@ h3 {
     justify-content: space-around;
     display: flex;
 }
-.item img {
+.item img {    
+    max-width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -210,6 +211,30 @@ h3 {
 .get a {    
     color: white;
 }
+
+.contact {
+    margin-top: 50px;    
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.contact h1 {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+.contact form {
+    display: grid;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+
+/*  */
+/*  */
+
 
 @media only screen and (max-width: 800px){
     .header .content h3 {

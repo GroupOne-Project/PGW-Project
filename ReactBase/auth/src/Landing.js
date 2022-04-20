@@ -48,7 +48,8 @@ function Landing() {
             <div className="available">
                 <div className="title-landing">
                     <h3>PGW Project</h3>
-                    <p>PGW Project est disponible sur presque toute les plateformes.</p>                    
+                    <p>PGW Project est disponible sur presque toute les plateformes :</p>
+                    <p>Mobile, Desktop, Tablette</p>
                 </div>
                 <img src="images/landing-teams-a19cfef3a4.png"></img>
             </div>
@@ -65,30 +66,37 @@ function Landing() {
                             <p>Soro Ange</p>
                         </div>
                         <div className="item">
-                            <img src="/images/yy.png"></img>
+                            <img src="/images/y.png"></img>
                             <p>Coulibaly Yaya.H</p>
                         </div>
                         <div className="item">
-                            <img src="/images/ss.png"></img>
+                            <img src="/images/s.png"></img>
                             <p>Atse Achi</p>
                         </div>
                         <div className="item">
-                            <img src="/images/yy.png"></img>
+                            <img src="/images/y.png"></img>
                             <p>Yapi H.Joel</p>
                         </div>
                         <div className="item">
-                            <img src="/images/ff.jpeg"></img>
+                            <img src="/images/y.png"></img>
                             <p>Kouassi K.Fernand</p>
                         </div>
                         <div className="item">
-                            <img src="/images/ss.png"></img>
+                            <img src="/images/s.png"></img>
                             <p>Kouassi Dominique</p>
                         </div>
                         <div className="item">
-                            <img src="/images/yy.png"></img>
+                            <img src="/images/y.png"></img>
                             <p>Trah Justin</p>
                         </div>
                     </div>
+                </div>
+
+                <div className="contact">
+                    <h1>Nous Contacter</h1>
+                    <form>                                           
+                        <a href="mailto: hamedcuenca5@gmail.com">Email</a>
+                    </form>
                 </div>
             </div>
             {/* ---------- */}            

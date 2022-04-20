@@ -26,11 +26,11 @@ function Reset() {
           placeholder="E-mail Address"
         />
         <button className="reset__btn" onClick={() => sendPasswordReset(email)}>
-          Send password reset email
+          Envoyer un email de recupération de mot de pass
         </button>
 
         <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          Je n'ai pas de compte <Link to="/register">Me connecter</Link> meintenant.
         </div>
       </div>
     </div>
