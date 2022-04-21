@@ -62,6 +62,11 @@ function Dashboard() {
         setRecentProjects(recentProjectss);
       }
       // setRecentProjects(recentProjects);
+     
+      if (recentProjects == 0) {
+        console.log("pas")
+        setRecentProjects("vide");
+      }
 
     } catch (err) {
       console.error(err);
@@ -110,7 +115,7 @@ function Dashboard() {
                 {/* <li><button>A Propos</button></li> */}
                 {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
-                  Se deconcter
+                  Se deconecter
                   </button>
                 </li>
             </ul>
@@ -132,7 +137,7 @@ function Dashboard() {
 
         {/* -------------main------------- */}
         <section className="home-dash">
-        <div class="container">
+        <div class="container-dash">
             <div class="item-dash"><button>
           <Link to="/create_project">CREER UN PROJET</Link>
         </button></div>            
@@ -141,7 +146,7 @@ function Dashboard() {
         <div class="container2">
           {/* User recents Project */}
           <div class="title">Projet recent</div>
-            <div>{recentProjects}</div>          
+            <div className="re">{recentProjects}</div>          
           </div>
         </section>
         {/* --------------main------------- */}
