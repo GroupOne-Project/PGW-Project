@@ -512,7 +512,7 @@ function Project() {
                 {/* <li><button>A Propos</button></li> */}
                 {/* <li><button>Langue</button></li> */}
                 <li><button onClick={logout}>
-                  Se deconecter
+                  Se deconnecter
                   </button>
                 </li>
             </ul>
